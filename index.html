@@ -3,58 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADHRS-RDC | Droits Humains et Réinsertion Sociale</title>
+<title>ADHRS-RDC Officiel</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,sans-serif;background:#f8fafc;color:#0f172a}
-header{background:white;padding:10px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.08);position:sticky;top:0;z-index:20}
-header img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #e2e8f0}
-.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb 60%,#16a34a);color:white;text-align:center;padding:42px 18px}
-.hero img{width:175px;height:175px;border-radius:50%;background:white;padding:10px;margin:0 auto 14px;display:block;box-shadow:0 12px 32px rgba(0,0,0,.35)}
-.hero h2{font-size:27px;font-weight:800}
-.btn{display:inline-block;background:white;color:#1e3a8a;padding:13px 28px;border-radius:999px;text-decoration:none;font-weight:800;margin-top:14px}
-.section{max-width:940px;margin:0 auto;padding:16px 12px}
-.motto{text-align:center;background:white;border:2px dashed #22c55e;border-radius:14px;padding:12px;margin-bottom:14px;font-weight:800;color:#1e3a8a;letter-spacing:2px;font-size:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
-.card{background:white;border-radius:18px;padding:16px;border:1px solid #e2e8f0}
-.affiche{background:white;border-radius:20px;padding:18px;border:3px solid #1e3a8a;margin-top:20px}
-.membre{display:flex;justify-content:space-between;align-items:center;padding:12px 10px;border-bottom:1px solid #f1f5f9}
-.badge{background:#dbeafe;color:#1e40af;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
-footer{background:#0f172a;color:#94a3b8;text-align:center;padding:24px;font-size:11px;margin-top:20px}
+:root{--bleu:#0a4a8a;--fond:#f5f7fa;}
+body{margin:0;font-family:Arial,sans-serif;background:var(--fond);color:#222;}
+header{background:var(--bleu);color:#fff;text-align:center;padding:25px 15px;}
+header img{width:90px;height:90px;border-radius:50%;background:#fff;padding:4px;object-fit:cover;}
+.box{max-width:900px;margin:18px auto;background:#fff;padding:18px;border-radius:10px;box-shadow:0 2px 6px #0001;}
+h2{color:var(--bleu);border-bottom:2px solid var(--bleu);padding-bottom:6px;font-size:18px;}
+.carte{border-left:4px solid var(--bleu);padding:10px 12px;margin:10px 0;background:#fafafa;border-radius:5px;}
+.tag{display:inline-block;background:var(--bleu);color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;}
+small{color:#666;}
+.btn-wa{display:inline-block;background:#25D366;color:#fff;padding:5px 10px;border-radius:5px;text-decoration:none;font-size:13px;margin-top:5px;}
+footer{text-align:center;padding:15px;color:#666;font-size:13px;}
 </style>
 </head>
 <body>
 <header>
-<img src="logo.png" alt="ADHRS Logo">
-<h1 style="font-size:17px;color:#1e3a8a;line-height:1.1">ADHRS-RDC<br><span style="font-size:11px;color:#64748b;font-weight:400">Droits Humains et Réinsertion Sociale</span></h1>
+<img src="logo.jpg" alt="ADHRS-RDC">
+<h1>ADHRS-RDC</h1>
+<p>Actions pour la Defense des Droits Humains et Reinsertion Sociale</p>
 </header>
-<div class="hero">
-<img src="logo.png" alt="Logo">
-<h2>Protéger • Sensibiliser • Réinsérer</h2>
-<p>Association engagée pour la défense des droits humains et la réinsertion sociale en RDC</p>
-<a class="btn" href="mailto:adhrs.rdc@gmail.com">Nous Contacter</a>
-</div>
-<div class="section">
-<div class="motto">PROTÉGER • SENSIBILISER • RÉINSÉRER</div>
-<div class="grid">
-<div class="card"><h3>🛡️ Protéger</h3><p style="font-size:13px;color:#475569">Défense juridique des victimes de violations des droits humains.</p></div>
-<div class="card"><h3>📢 Sensibiliser</h3><p style="font-size:13px;color:#475569">Formations et éducation aux droits humains à Kinshasa.</p></div>
-<div class="card"><h3>🤝 Réinsérer</h3><p style="font-size:13px;color:#475569">Accompagnement psychosocial et réinsertion sociale.</p></div>
-<div class="card"><h3>⚖️ Plaidoyer</h3><p style="font-size:13px;color:#475569">Accès à la justice pour tous.</p></div>
-</div>
-<div class="affiche">
-<h2 style="text-align:center;color:#1e3a8a">📋 TABLEAU OFFICIEL DES MEMBRES</h2>
-<p style="text-align:center;color:#64748b;font-size:11px;margin:6px 0 14px">Liste validée par la Présidence - Seul l'admin ajoute</p>
-<div id="liste">Chargement...</div>
-</div>
-</div>
-<footer><img src="logo.png" style="width:50px;height:50px;border-radius:50%;background:white;padding:4px"><br><strong style="color:white">ADHRS-RDC</strong><br>© 2026 Kinshasa, RDC</footer>
+
+<div class="box"><h2>📢 Annonces</h2><div id="annonces">Chargement...</div></div>
+<div class="box"><h2>👥 Membres</h2><div id="membres">Chargement...</div></div>
+<div class="box"><h2>🎯 Activités - Grandes Catégories</h2><div id="activites">Chargement...</div></div>
+<div class="box"><h2>🤝 Partenariats</h2><div id="partenaires">Chargement...</div></div>
+
+<footer>ADHRS-RDC © 2026 - Kinshasa, RDC - Contact WhatsApp disponible</footer>
+
 <script>
-fetch('membres.json?v='+Date.now()).then(r=>r.json()).then(m=>{
-let h='';m.forEach(x=>{h+=`<div class="membre"><div><strong>${x.nom}</strong><div style="font-size:11px;color:#64748b">${x.fonction}</div></div><span class="badge">${x.date}</span></div>`});
-document.getElementById('liste').innerHTML=h;
-}).catch(()=>{document.getElementById('liste').innerHTML='<p style="text-align:center;font-size:12px;color:#64748b">Créez membres.json pour afficher les membres</p>'});
+function safeFetch(file, callback){
+  fetch(file).then(r=>{ if(!r.ok) throw new Error(); return r.json(); }).then(callback).catch(()=>{ document.getElementById(file.split('.')[0])?.innerHTML && (document.getElementById(file.split('.')[0]).innerHTML = "") });
+}
+
+fetch('annonces.json').then(r=>r.json()).then(d=>{
+  let h=''; d.forEach(a=>{
+    let wa=encodeURIComponent(a.titre+' - '+a.message);
+    h+=`<div class="carte"><span class="tag">${a.type||'INFO'}</span> <small>${a.date||''} | ${a.lieu||''}</small><h4>${a.titre||''}</h4><p>${a.message||''}</p><a class="btn-wa" href="https://wa.me/?text=${wa}" target="_blank">Partager WhatsApp</a></div>`;
+  });
+  document.getElementById('annonces').innerHTML = h || 'Aucune annonce';
+}).catch(()=>{ document.getElementById('annonces').innerHTML='Aucune annonce pour le moment'; });
+
+fetch('membres.json').then(r=>r.json()).then(d=>{
+  let h=''; d.forEach(m=>{
+    h+=`<div class="carte"><h4>${m.nom||''}</h4><p><b>${m.fonction||''}</b><br>📍 ${m.commune||''} ${m.quartier?'/ Q/'+m.quartier:''} ${m.avenue?'/ Av.'+m.avenue:''}<br>📞 ${m.telephone||''}</p></div>`;
+  });
+  document.getElementById('membres').innerHTML = h || 'Aucun membre';
+}).catch(()=>{ document.getElementById('membres').innerHTML='Aucun membre pour le moment'; });
+
+fetch('activites.json').then(r=>r.json()).then(d=>{
+  const cats={}; d.forEach(a=>{ const k=(a.categorie||'AUTRE').toUpperCase(); if(!cats[k]) cats[k]=[]; cats[k].push(a); });
+  let h=''; for(let c in cats){ h+=`<h3 style="color:#0a4a8a;margin-top:18px;">${c}</h3>`; cats[c].forEach(a=>{ h+=`<div class="carte"><small>${a.date||''}</small><h4>${a.titre||''}</h4><p>${a.description||''}</p></div>`; }); }
+  document.getElementById('activites').innerHTML = h || 'Aucune activite';
+}).catch(()=>{ document.getElementById('activites').innerHTML='Ajoutez activites.json pour voir les activites'; });
+
+fetch('partenariats.json').then(r=>r.json()).then(d=>{
+  const cats={}; d.forEach(p=>{ const k=(p.type||'AUTRE').toUpperCase(); if(!cats[k]) cats[k]=[]; cats[k].push(p); });
+  let h=''; for(let c in cats){ h+=`<h3 style="color:#0a4a8a;margin-top:18px;">${c}</h3>`; cats[c].forEach(p=>{ h+=`<div class="carte"><h4>${p.nom||''}</h4><p>${p.description||''}</p></div>`; }); }
+  document.getElementById('partenaires').innerHTML = h || 'Aucun partenariat';
+}).catch(()=>{ document.getElementById('partenaires').innerHTML='Ajoutez partenariats.json pour voir les partenariats'; });
 </script>
 </body>
-                                                                                                            </html>
+</html>

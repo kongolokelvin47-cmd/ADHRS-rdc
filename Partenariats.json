@@ -1,0 +1,17 @@
+[
+  {
+    "nom": "Ministere des Droits Humains",
+    "type": "INSTITUTIONNEL",
+    "description": "Partenaire institutionnel RDC."
+  },
+  {
+    "nom": "Reseau ONG Kinshasa",
+    "type": "TECHNIQUE",
+    "description": "Collaboration terrain et formations."
+  },
+  {
+    "nom": "Bailleur International",
+    "type": "FINANCIER",
+    "description": "Soutien aux activites ADHRS-RDC."
+  }
+]

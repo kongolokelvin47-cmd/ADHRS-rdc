@@ -1,0 +1,16 @@
+[
+  {
+    "titre": "Bienvenue sur le site officiel ADHRS-RDC",
+    "date": "12 Octobre 2026",
+    "lieu": "Kinshasa",
+    "message": "L'Association de Défense des Droits Humains et de Réinsertion Sociale lance officiellement son site web. Restez connectés pour nos prochaines activités.",
+    "type": "info"
+  },
+  {
+    "titre": "Réunion Générale des Membres",
+    "date": "15 Octobre 2026 à 10h00",
+    "lieu": "Commune de Ngaliema, Quartier Joli Parc",
+    "message": "Tous les membres ADHRS-RDC de Kinshasa sont invités à la réunion générale mensuelle. Présence obligatoire. Ordre du jour : Plan d'action Octobre-Décembre 2026.",
+    "type": "reunion"
+  }
+]

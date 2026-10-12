@@ -1,0 +1,32 @@
+[
+  {
+    "nom": "KONGOLO Kelvin",
+    "fonction": "Coordonnateur National",
+    "province": "Kinshasa",
+    "commune": "Ngaliema",
+    "quartier": "Joli Parc",
+    "avenue": "Avenue de la Paix",
+    "numero_parcelle": "N° 12",
+    "telephone": "+243 000 000 000"
+  },
+  {
+    "nom": "MBUYI Jean-Pierre",
+    "fonction": "Secrétaire Général",
+    "province": "Kinshasa",
+    "commune": "Gombe",
+    "quartier": "Batshia",
+    "avenue": "Avenue du Commerce",
+    "numero_parcelle": "N° 45",
+    "telephone": "+243 000 000 000"
+  },
+  {
+    "nom": "KABONGO Grace",
+    "fonction": "Chargée des Droits Humains",
+    "province": "Nord-Kivu",
+    "commune": "Goma",
+    "quartier": "Himbi",
+    "avenue": "Avenue du Lac",
+    "numero_parcelle": "N° 08",
+    "telephone": "+243 000 000 000"
+  }
+]

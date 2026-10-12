@@ -3,66 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADHRS-RDC Officiel</title>
+<title>ADHRS-RDC - Site Officiel</title>
 <style>
-:root{--bleu:#0a4a8a;--fond:#f5f7fa;}
-body{margin:0;font-family:Arial,sans-serif;background:var(--fond);color:#222;}
-header{background:var(--bleu);color:#fff;text-align:center;padding:25px 15px;}
-header img{width:90px;height:90px;border-radius:50%;background:#fff;padding:4px;object-fit:cover;}
-.box{max-width:900px;margin:18px auto;background:#fff;padding:18px;border-radius:10px;box-shadow:0 2px 6px #0001;}
-h2{color:var(--bleu);border-bottom:2px solid var(--bleu);padding-bottom:6px;font-size:18px;}
-.carte{border-left:4px solid var(--bleu);padding:10px 12px;margin:10px 0;background:#fafafa;border-radius:5px;}
-.tag{display:inline-block;background:var(--bleu);color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;}
-small{color:#666;}
-.btn-wa{display:inline-block;background:#25D366;color:#fff;padding:5px 10px;border-radius:5px;text-decoration:none;font-size:13px;margin-top:5px;}
-footer{text-align:center;padding:15px;color:#666;font-size:13px;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;background:#f2f4f7;color:#1a2e4a;padding-bottom:80px}
+.top{position:sticky;top:0;z-index:20;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 15px;box-shadow:0 1px 4px #0001}
+.top img{width:58px;height:58px;border-radius:50%;object-fit:cover}
+.icon-btn{font-size:22px;background:none;border:none;cursor:pointer}
+.search-box{margin:12px 15px;background:#eef1f5;border-radius:24px;padding:11px 14px;display:flex;align-items:center;gap:10px}
+.search-box input{border:none;background:transparent;flex:1;outline:none;font-size:14px}
+.don-banner{margin:12px 15px;background:linear-gradient(90deg,#0a4a8a 0%,#0d9a5a 100%);color:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.section{margin:12px 15px;background:#fff;border-radius:16px;box-shadow:0 2px 10px #0001;padding:14px}
+.section h2{font-size:16px;color:#0a4a8a;font-weight:800;border-left:4px solid #0a4a8a;padding-left:8px;margin-bottom:10px}
+.feed-card{background:#fff;border-radius:14px;box-shadow:0 1px 6px #0001;margin-bottom:10px;overflow:hidden;border:1px solid #f0f0f0}
+.feed-head{padding:10px 12px;font-size:12px;color:#666;display:flex;align-items:center;gap:6px}
+.feed-body{padding:0 12px 8px}.feed-body h4{font-size:15px;color:#111;margin-bottom:4px}.feed-body p{font-size:13px;color:#333;line-height:1.4}
+.feed-body img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-top:8px}
+.feed-actions{display:flex;gap:18px;padding:10px 12px;border-top:1px solid #f0f0f0}
+.act{border:none;background:none;font-size:13px;font-weight:700;color:#555;cursor:pointer;display:flex;align-items:center;gap:4px}
+.stats{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-around;background:#0a4a8a;color:#fff;margin:12px 15px;padding:14px;border-radius:14px;font-weight:700;font-size:11px;text-align:center}
+.stats span{background:#ffffff1a;padding:7px 10px;border-radius:20px}
+.input{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px;margin:6px 0;font-size:14px;outline:none}
+.btn{width:100%;background:#188a3a;color:#fff;padding:12px;border:none;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;margin-top:6px}
+.comment{background:#f1f5f9;border-radius:10px;padding:6px 10px;margin-top:6px;font-size:12px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0 12px;border-top:1px solid #e5e7eb;z-index:30}
+.bottom-nav a{display:flex;flex-direction:column;align-items:center;font-size:11px;color:#888;text-decoration:none;gap:2px}
+.bottom-nav a.active{color:#0a4a8a;font-weight:800}
+@media(min-width:700px){body{max-width:460px;margin:0 auto;box-shadow:0 0 25px #0002;min-height:100vh}}
 </style>
 </head>
 <body>
-<header>
+
+<div class="top">
+<button class="icon-btn" onclick="alert('Menu ADHRS-RDC\n\nAccueil\nActivités\nPartenariats\nContact')">☰</button>
 <img src="logo.jpg" alt="ADHRS-RDC">
-<h1>ADHRS-RDC</h1>
-<p>Actions pour la Defense des Droits Humains et Reinsertion Sociale</p>
-</header>
+<button class="icon-btn" onclick="alert('🔔 3 nouvelles annonces ADHRS')">🔔</button>
+</div>
 
-<div class="box"><h2>📢 Annonces</h2><div id="annonces">Chargement...</div></div>
-<div class="box"><h2>👥 Membres</h2><div id="membres">Chargement...</div></div>
-<div class="box"><h2>🎯 Activités - Grandes Catégories</h2><div id="activites">Chargement...</div></div>
-<div class="box"><h2>🤝 Partenariats</h2><div id="partenaires">Chargement...</div></div>
+<div class="search-box"><span>🔍</span><input id="searchInput" placeholder="Rechercher activité, ville, partenariat..." oninput="filtrer()"><span>☰</span></div>
 
-<footer>ADHRS-RDC © 2026 - Kinshasa, RDC - Contact WhatsApp disponible</footer>
+<div class="don-banner" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+<div style="font-size:32px">👥</div><div><div style="font-weight:800;font-size:16px">FAIRE UN DON</div><div style="font-size:11px;opacity:.9">Soutenez nos actions • 100% transparent</div></div>
+</div>
+
+<div class="section"><h2>📰 Fil d'Actualité du Jour (5 dernières annonces)</h2><div id="feed">Chargement annonces...</div></div>
+<div class="section"><h2>🎯 Nos Actions par Grande Catégorie</h2><div id="actions">Chargement activités...</div></div>
+<div class="section"><h2>🤝 Nos Partenariats</h2><div id="parts">Chargement partenariats...</div></div>
+
+<div class="section" id="contact">
+<h2>📩 Contact - Déposer une Recommandation</h2>
+<p style="font-size:12px;color:#666;margin-bottom:6px">Message direct sur WhatsApp ADHRS-RDC</p>
+<input id="nom" class="input" placeholder="Votre nom complet">
+<input id="tel" class="input" placeholder="Votre numéro WhatsApp">
+<textarea id="msg" class="input" rows="4" placeholder="Écrivez votre recommandation, plainte ou demande..."></textarea>
+<button class="btn" id="btnRecom">Envoyer sur WhatsApp ADHRS</button>
+<p style="font-size:11px;color:#888;text-align:center;margin-top:8px">📍 Kinshasa, RDC • contact@adhrs.org • 08h-17h</p>
+</div>
+
+<div class="stats" id="stats">
+<span id="nb-membres">👥 Chargement...</span>
+<span>📍 25 Provinces</span>
+<span>🏘️ 150+ Communautés</span>
+<span>✅ 98% Réussite</span>
+</div>
+
+<div class="bottom-nav">
+<a class="active" href="#"><span>🏠</span><span>Accueil</span></a>
+<a href="#actions"><span>🗓️</span><span>Activités</span></a>
+<a href="#contact"><span>🎁</span><span>Dons</span></a>
+<a href="#contact"><span>👤</span><span>Profil</span></a>
+</div>
 
 <script>
-function safeFetch(file, callback){
-  fetch(file).then(r=>{ if(!r.ok) throw new Error(); return r.json(); }).then(callback).catch(()=>{ document.getElementById(file.split('.')[0])?.innerHTML && (document.getElementById(file.split('.')[0]).innerHTML = "") });
+function getLikes(){return JSON.parse(localStorage.getItem('adhrs_likes')||'{}')}
+function setLikes(o){localStorage.setItem('adhrs_likes',JSON.stringify(o))}
+function getComs(){return JSON.parse(localStorage.getItem('adhrs_coms')||'{}')}
+function setComs(o){localStorage.setItem('adhrs_coms',JSON.stringify(o))}
+
+function cardHtml(a,i,type){
+  let id=type+i, likes=getLikes(), coms=getComs();
+  let lk=likes[id]||0, list=coms[id]||[];
+  let txt=((a.titre||a.nom||'')+' '+(a.message||a.description||'')+' '+(a.lieu||a.commune||'')).toLowerCase().replace(/"/g,'');
+  let share=encodeURIComponent((a.titre||a.nom||'')+' - '+(a.message||a.description||'').substring(0,120)+' | ADHRS-RDC');
+  return `<div class="feed-card" data-text="${txt}">
+    <div class="feed-head"><img src="logo.jpg" style="width:26px;height:26px;border-radius:50%"> <b>ADHRS</b> • ${a.date||''} ${a.lieu||''} • ${(a.type||a.categorie||'').toUpperCase()}</div>
+    <div class="feed-body"><h4>${a.titre||a.nom||''}</h4><p>${a.message||a.description||''}</p>${a.image?`<img src="${a.image}" loading="lazy">`:''}</div>
+    <div class="feed-actions">
+      <button class="act" onclick="like('${id}')"><span id="ic-${id}">${likes[id+'_me']?'❤️':'🤍'}</span> <span id="n-${id}">${lk}</span></button>
+      <button class="act" onclick="com('${id}')">💬 ${list.length}</button>
+      <button class="act" onclick="window.open('https://wa.me/?text=${share}','_blank')">↗️ Partager</button>
+    </div>
+    <div id="c-${id}" style="padding:0 12px 10px">${list.map(t=>`<div class="comment">💬 ${t}</div>`).join('')}</div>
+  </div>`;
 }
+window.like=function(id){let l=getLikes();if(l[id+'_me']){l[id]=(l[id]||1)-1;delete l[id+'_me']}else{l[id]=(l[id]||0)+1;l[id+'_me']=1}setLikes(l);document.getElementById('n-'+id).innerText=l[id]||0;document.getElementById('ic-'+id).innerText=l[id+'_me']?'❤️':'🤍'}
+window.com=function(id){let t=prompt('Votre commentaire:');if(!t)return;let c=getComs();if(!c[id])c[id]=[];c[id].push(t);setComs(c);document.getElementById('c-'+id).innerHTML+=`<div class="comment">💬 ${t}</div>`}
+window.filtrer=function(){let q=document.getElementById('searchInput').value.toLowerCase();document.querySelectorAll('[data-text]').forEach(el=>{el.style.display=el.getAttribute('data-text').includes(q)?'block':'none'})}
 
-fetch('annonces.json').then(r=>r.json()).then(d=>{
-  let h=''; d.forEach(a=>{
-    let wa=encodeURIComponent(a.titre+' - '+a.message);
-    h+=`<div class="carte"><span class="tag">${a.type||'INFO'}</span> <small>${a.date||''} | ${a.lieu||''}</small><h4>${a.titre||''}</h4><p>${a.message||''}</p><a class="btn-wa" href="https://wa.me/?text=${wa}" target="_blank">Partager WhatsApp</a></div>`;
-  });
-  document.getElementById('annonces').innerHTML = h || 'Aucune annonce';
-}).catch(()=>{ document.getElementById('annonces').innerHTML='Aucune annonce pour le moment'; });
+fetch('annonces.json').then(r=>r.json()).then(d=>{let html='';d.slice(-5).reverse().forEach((a,i)=>html+=cardHtml(a,i,'ann'));document.getElementById('feed').innerHTML=html||'Aucune annonce'}).catch(()=>document.getElementById('feed').innerHTML='Ajoutez annonces.json');
+fetch('activites.json').then(r=>r.json()).then(d=>{let html='';d.forEach((a,i)=>html+=cardHtml(a,i,'act'));document.getElementById('actions').innerHTML=html}).catch(()=>{});
+fetch('partenariats.json').then(r=>r.json()).then(d=>{let html='';d.forEach((a,i)=>html+=cardHtml(a,i,'part'));document.getElementById('parts').innerHTML=html}).catch(()=>{});
+fetch('membres.json').then(r=>r.json()).then(d=>{document.getElementById('nb-membres').innerText=`👥 ${d.length} Adhérents`}).catch(()=>{document.getElementById('nb-membres').innerText='👥 250+ Adhérents'});
 
-fetch('membres.json').then(r=>r.json()).then(d=>{
-  let h=''; d.forEach(m=>{
-    h+=`<div class="carte"><h4>${m.nom||''}</h4><p><b>${m.fonction||''}</b><br>📍 ${m.commune||''} ${m.quartier?'/ Q/'+m.quartier:''} ${m.avenue?'/ Av.'+m.avenue:''}<br>📞 ${m.telephone||''}</p></div>`;
-  });
-  document.getElementById('membres').innerHTML = h || 'Aucun membre';
-}).catch(()=>{ document.getElementById('membres').innerHTML='Aucun membre pour le moment'; });
-
-fetch('activites.json').then(r=>r.json()).then(d=>{
-  const cats={}; d.forEach(a=>{ const k=(a.categorie||'AUTRE').toUpperCase(); if(!cats[k]) cats[k]=[]; cats[k].push(a); });
-  let h=''; for(let c in cats){ h+=`<h3 style="color:#0a4a8a;margin-top:18px;">${c}</h3>`; cats[c].forEach(a=>{ h+=`<div class="carte"><small>${a.date||''}</small><h4>${a.titre||''}</h4><p>${a.description||''}</p></div>`; }); }
-  document.getElementById('activites').innerHTML = h || 'Aucune activite';
-}).catch(()=>{ document.getElementById('activites').innerHTML='Ajoutez activites.json pour voir les activites'; });
-
-fetch('partenariats.json').then(r=>r.json()).then(d=>{
-  const cats={}; d.forEach(p=>{ const k=(p.type||'AUTRE').toUpperCase(); if(!cats[k]) cats[k]=[]; cats[k].push(p); });
-  let h=''; for(let c in cats){ h+=`<h3 style="color:#0a4a8a;margin-top:18px;">${c}</h3>`; cats[c].forEach(p=>{ h+=`<div class="carte"><h4>${p.nom||''}</h4><p>${p.description||''}</p></div>`; }); }
-  document.getElementById('partenaires').innerHTML = h || 'Aucun partenariat';
-}).catch(()=>{ document.getElementById('partenaires').innerHTML='Ajoutez partenariats.json pour voir les partenariats'; });
+document.getElementById('btnRecom').onclick=function(){
+  let nom=document.getElementById('nom').value||'Anonyme', tel=document.getElementById('tel').value||'', msg=document.getElementById('msg').value||'';
+  if(!msg){alert('Écrivez votre recommandation SVP');return}
+  let txt=`RECOMMANDATION ADHRS-RDC%0A%0ANom: ${nom}%0ATel: ${tel}%0A%0A${msg}`;
+  window.open(`https://wa.me/?text=${txt}`,'_blank');
+}
 </script>
 </body>
 </html>

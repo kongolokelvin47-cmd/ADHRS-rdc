@@ -1,77 +1,131 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin UNIQUE ADHRS</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>*{box-sizing:border-box}body{font-family:-apple-system,Arial;background:#f2f4f7;margin:0}
-.lock{position:fixed;inset:0;background:linear-gradient(135deg,#0a4a8a,#020617);z-index:99;display:flex;align-items:center;justify-content:center}
-.lock-box{background:#fff;padding:24px;border-radius:18px;width:92%;max-width:380px;text-align:center}
-.top{position:sticky;top:0;z-index:20;background:#fff;padding:12px;display:flex;justify-content:space-between;box-shadow:0 1px 6px #0001}
-.tabs{display:flex;gap:6px;overflow:auto;padding:10px;background:#fff}.tab{padding:9px 14px;border-radius:20px;border:1px solid #ddd;background:#f8fafc;font-weight:700;font-size:11px;white-space:nowrap;cursor:pointer}.tab.active{background:#0a4a8a;color:#fff}
-.card{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 2px 8px #0001}.input{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:9px;margin:6px 0}.btn{width:100%;padding:12px;border:none;border-radius:10px;font-weight:800;cursor:pointer;margin-top:6px}.btn-blue{background:#0a4a8a;color:#fff}.btn-green{background:#0d9a5a;color:#fff}.btn-red{background:#e11d48;color:#fff}.btn-gray{background:#e5e7eb}.item{background:#f8fafc;border:1px solid #eef2f7;border-radius:12px;padding:10px;margin-bottom:8px;display:flex;gap:10px;align-items:center}.item img{width:56px;height:56px;border-radius:10px;object-fit:cover}.hidden{display:none}.warn{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px;border-radius:10px;font-size:12px;margin-top:10px}</style></head><body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADMIN ADHRS - Kelvin</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#0f172a;color:#fff;padding:15px}
+.login{max-width:380px;margin:80px auto;background:#1e293b;padding:25px;border-radius:16px;text-align:center}
+.input{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff}
+.btn{width:100%;padding:12px;background:#0d9a5a;border:none;border-radius:8px;color:#fff;font-weight:800;cursor:pointer;margin-top:8px}
+.btn-blue{background:#0a4a8a}.btn-red{background:#dc2626}.card{background:#1e293b;padding:14px;border-radius:12px;margin:10px 0}
+.tabs{display:flex;gap:6px;overflow:auto;margin:12px 0}.tab{padding:10px 14px;background:#1e293b;border-radius:8px;cursor:pointer;white-space:nowrap;font-size:13px;font-weight:700}
+.tab.active{background:#0a4a8a}img.prev{width:100%;max-height:200px;object-fit:contain;background:#fff;border-radius:8px;margin-top:6px}
+</style>
+</head>
+<body>
 
-<div id="lock" class="lock"><div class="lock-box">
-<img src="logo.jpg" id="lockLogo" style="width:80px;height:80px;border-radius:50%;border:3px solid #0a4a8a">
-<div id="firstTime" class="hidden"><h3 style="color:#0a4a8a">🔐 Crée Admin Unique</h3><input id="newPass1" type="password" class="input" placeholder="Mot de passe maître min 6"><input id="newPass2" type="password" class="input" placeholder="Confirme"><input id="secretQ" class="input" placeholder="Question secrète"><input id="secretA" class="input" placeholder="Réponse secrète"><button class="btn btn-blue" onclick="createMaster()">CRÉER ADMIN UNIQUE</button></div>
-<div id="loginBox" class="hidden"><h3 style="color:#0a4a8a">Admin Unique Kelvin</h3><input id="pass" type="password" class="input" placeholder="Mot de passe maître"><button class="btn btn-blue" onclick="unlock()">Entrer</button><p style="font-size:11px"><a href="#" onclick="showRecover()">Oublié?</a></p><div id="attempts" class="warn hidden"></div></div>
-<div id="recoverBox" class="hidden"><p id="recoverQ"></p><input id="recoverA" class="input" placeholder="Réponse secrète"><button class="btn btn-blue" onclick="recover()">Récupérer</button></div>
-<div id="deviceBlock" class="hidden"><div class="warn">⛔ Appareil non autorisé - Admin unique lié à 1 téléphone</div><input id="masterKey" type="password" class="input" placeholder="Code maître"><button class="btn btn-blue" onclick="unlockDevice()">Autoriser</button></div>
-</div></div>
-
-<div class="top"><b>ADHRS ADMIN UNIQUE</b><span onclick="location.href='index.html'">👁️ Site</span></div>
-<div class="tabs">
-<button class="tab active" onclick="showTab('pub',this)">📢 Annonces</button>
-<button class="tab" onclick="showTab('activ',this)">🎯 Activités</button>
-<button class="tab" onclick="showTab('part',this)">🤝 Partenaires</button>
-<button class="tab" onclick="showTab('membres',this)">👥 Membres</button>
-<button class="tab" onclick="showTab('manage',this)">✏️ Gérer</button>
-<button class="tab" onclick="showTab('apparence',this)">🎨 Design</button>
-<button class="tab" onclick="showTab('dons',this)">🎁 Dons</button>
-<button class="tab" onclick="showTab('secur',this)">🔐 Sécurité</button>
+<div id="loginBox" class="login">
+<h2>🔐 ADMIN ADHRS-RDC</h2><p style="margin:8px 0;font-size:13px;color:#94a3b8">Accès réservé à Kelvin</p>
+<input id="pass" type="password" class="input" placeholder="Mot de passe admin">
+<button class="btn" onclick="checkPass()">Entrer</button>
+<small style="color:#64748b;display:block;margin-top:10px">Mot de passe par défaut: adhrs2024</small>
 </div>
 
-<div id="tab-pub" class="card"><h3 id="formTitle">📢 Publier Annonce</h3><input id="titre" class="input" placeholder="Titre"><textarea id="msg" class="input" rows="3" placeholder="Message"></textarea><input id="lieu" class="input" placeholder="Lieu"><input type="file" id="photo" accept="image/*" class="input"><div id="preview"></div><input type="datetime-local" id="progDate" class="input"><button class="btn btn-blue" onclick="publier('annonces')">🚀 PUBLIER ANNONCE</button><button class="btn btn-green" onclick="programmer()">🗓️ PROGRAMMER</button><button id="btnCancelEdit" class="btn btn-gray hidden" onclick="cancelEdit()">Annuler modif</button></div>
-<div id="tab-activ" class="card hidden"><h3>🎯 Nouvelle Activité Terrain</h3><input id="aTitre" class="input" placeholder="Titre activité"><textarea id="aDesc" class="input" rows="3" placeholder="Description"></textarea><input id="aLieu" class="input" placeholder="Lieu"><input type="file" id="aPhoto" accept="image/*" class="input"><div id="aPreview"></div><button class="btn btn-blue" onclick="publier('activites')">➕ AJOUTER ACTIVITÉ</button><div id="listActiv"></div></div>
-<div id="tab-part" class="card hidden"><h3>🤝 Nouveau Partenaire</h3><input id="pNom" class="input" placeholder="Nom partenaire ex: UNICEF"><textarea id="pDesc" class="input" rows="2" placeholder="Description"></textarea><input id="pLieu" class="input" placeholder="Type / Lieu"><input type="file" id="pPhoto" accept="image/*" class="input"><div id="pPreview"></div><button class="btn btn-blue" onclick="publier('partenaires')">➕ AJOUTER PARTENAIRE</button><div id="listPart"></div></div>
-<div id="tab-membres" class="card hidden"><h3>👥 Ajouter Membre</h3><input id="mNom" class="input" placeholder="Nom"><input id="mTel" class="input" placeholder="Tel"><input id="mProvince" class="input" placeholder="Province"><input type="file" id="mPhoto" accept="image/*" class="input"><button class="btn btn-blue" onclick="addMembre()">Ajouter Membre</button><div id="listeMembres"></div></div>
-<div id="tab-manage" class="card hidden"><h3>✏️ Modifier / Supprimer</h3><select id="typeManage" class="input" onchange="renderManage()"><option value="annonces">Annonces</option><option value="activites">Activités</option><option value="partenaires">Partenaires</option><option value="membres">Membres</option></select><div id="listeManage"></div></div>
-<div id="tab-apparence" class="card hidden"><h3>🎨 Logo & Fond</h3><img id="currentLogo" src="logo.jpg" style="width:90px;height:90px;border-radius:50%"><input type="file" id="newLogo" accept="image/*" class="input"><button class="btn btn-blue" onclick="changeLogo()">Changer Logo partout</button><input type="color" id="bgColor" class="input" style="height:50px" value="#f2f4f7"><button class="btn btn-blue" onclick="changeBgColor()">Couleur fond</button><input type="file" id="bgImage" accept="image/*" class="input"><button class="btn btn-green" onclick="changeBgImage()">Image fond</button><button class="btn btn-red" onclick="resetAppearance()">Réinitialiser</button></div>
-<div id="tab-dons" class="card hidden"><h3>🎁 Dons</h3><input id="dNom" class="input" placeholder="Nom donateur"><input id="dMontant" type="number" class="input" placeholder="Montant USD"><input id="dTel" class="input" placeholder="WhatsApp 243..."><button class="btn btn-green" onclick="addDon()">Enregistrer + PDF + WhatsApp</button><div id="listeDons"></div></div>
-<div id="tab-secur" class="card hidden"><h3>🔐 Sécurité Unique</h3><div style="background:#f0fdf4;padding:10px;border-radius:10px;font-size:12px"><b>ID Appareil:</b> <span id="deviceId"></span><br><b>Admin unique:</b> Kelvin seul</div><input id="newPassChange" type="password" class="input" placeholder="Nouveau mot de passe maître"><button class="btn btn-blue" onclick="changeMasterPass()">Changer mot de passe</button><div class="warn">Renomme ce fichier en <b>adhrs-kelvin-prive-2024.html</b> pour que personne ne devine le lien!</div></div>
+<div id="adminBox" style="display:none">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2>👑 ADHRS Admin - Kelvin</h2><button class="btn-red" style="padding:8px 12px;border-radius:8px;border:none;color:#fff" onclick="logout()">Sortir</button></div>
+
+<div class="tabs">
+<div class="tab active" onclick="showTab('ann')">📰 Annonces</div>
+<div class="tab" onclick="showTab('act')">🎯 Activités</div>
+<div class="tab" onclick="showTab('part')">🤝 Partenariats</div>
+<div class="tab" onclick="showTab('app')">🎨 Apparence</div>
+<div class="tab" onclick="showTab('memb')">👥 Membres</div>
+</div>
+
+<div id="tab-ann" class="card">
+<h3>Publier une Annonce</h3>
+<input id="a_titre" class="input" placeholder="Titre">
+<textarea id="a_msg" class="input" rows="3" placeholder="Message"></textarea>
+<input id="a_lieu" class="input" placeholder="Lieu (ex: Kinshasa)">
+<input id="a_date" type="date" class="input">
+<input id="a_img" class="input" placeholder="Lien image (ou laisse vide)">
+<input type="file" id="a_file" accept="image/*" class="input" onchange="toBase64(this,'a_img')">
+<img id="a_prev" class="prev" style="display:none">
+<button class="btn" onclick="publier('annonce')">📢 Publier Maintenant</button>
+<div id="list-ann"></div>
+</div>
+
+<div id="tab-act" class="card" style="display:none">
+<h3>Publier Activité Terrain</h3>
+<input id="ac_titre" class="input" placeholder="Titre activité">
+<textarea id="ac_msg" class="input" rows="3" placeholder="Description"></textarea>
+<input id="ac_lieu" class="input" placeholder="Lieu">
+<input id="ac_date" type="date" class="input">
+<input id="ac_img" class="input" placeholder="Lien image">
+<input type="file" id="ac_file" accept="image/*" class="input" onchange="toBase64(this,'ac_img')">
+<button class="btn" onclick="publier('activite')">🎯 Publier Activité</button>
+<div id="list-act"></div>
+</div>
+
+<div id="tab-part" class="card" style="display:none">
+<h3>Ajouter Partenariat</h3>
+<input id="p_nom" class="input" placeholder="Nom partenaire">
+<textarea id="p_desc" class="input" rows="2" placeholder="Description"></textarea>
+<input id="p_img" class="input" placeholder="Lien logo">
+<input type="file" accept="image/*" class="input" onchange="toBase64(this,'p_img')">
+<button class="btn" onclick="publier('partenaire')">🤝 Ajouter</button>
+<div id="list-part"></div>
+</div>
+
+<div id="tab-app" class="card" style="display:none">
+<h3>🎨 Apparence Site Public</h3>
+<label>Logo (image):</label><input id="app_logo" class="input" placeholder="Lien logo ou base64">
+<input type="file" accept="image/*" class="input" onchange="toBase64(this,'app_logo')">
+<label>Couleur fond:</label><input id="app_bg" type="color" class="input" value="#f2f4f7">
+<label>Image de fond (lien):</label><input id="app_bgimg" class="input" placeholder="Lien image fond">
+<button class="btn btn-blue" onclick="saveApp()">💾 Sauvegarder Apparence</button>
+<button class="btn-red btn" onclick="clearApp()">Effacer Apparence</button>
+</div>
+
+<div id="tab-memb" class="card" style="display:none">
+<h3>👥 Membres: <span id="nb"></span></h3>
+<div id="list-memb"></div>
+<button class="btn-red btn" onclick="clearMemb()">Supprimer tous</button>
+</div>
+
+<div class="card" style="background:#0a4a8a">
+<h4>📦 Export pour GitHub (optionnel)</h4><small>Si tu veux que tout le monde voie même sans localStorage, exporte et remplace les.json sur GitHub</small><br><br>
+<button class="btn" onclick="exportJson('annonces')">Exporter annonces.json</button>
+<button class="btn" onclick="exportJson('activites')">Exporter activites.json</button>
+<button class="btn" onclick="exportJson('partenaires')">Exporter partenariats.json</button>
+</div>
+</div>
 
 <script>
-const get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch{return d}}; const set=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
-let deviceFingerprint=btoa(navigator.userAgent+screen.width+navigator.language).substring(0,16);
-document.getElementById('deviceId').innerText=deviceFingerprint;
-function initLock(){let master=get('adhrs_master',null);if(!master){document.getElementById('firstTime').classList.remove('hidden');}else{let allowed=get('adhrs_allowed_devices',[]);if(allowed.length&&!allowed.includes(deviceFingerprint)){document.getElementById('deviceBlock').classList.remove('hidden');}else{document.getElementById('loginBox').classList.remove('hidden');}}}
-function createMaster(){let p1=newPass1.value,p2=newPass2.value,q=secretQ.value.trim(),a=secretA.value.trim();if(p1.length<6)return alert('Min 6');if(p1!==p2)return alert('Différent');if(!q||!a)return alert('Question secrète obligatoire');set('adhrs_master',{pass:btoa(p1),q:q,a:btoa(a.toLowerCase())});set('adhrs_allowed_devices',[deviceFingerprint]);alert('Admin unique créé!');location.reload();}
-let failCount=0;function unlock(){let m=get('adhrs_master',null);if(btoa(pass.value)===m.pass){document.getElementById('lock').style.display='none';loadAppearance();renderManage();}else{failCount++;let el=document.getElementById('attempts');el.classList.remove('hidden');el.innerText=`Incorrect ${failCount}/3`;if(failCount>=3)setTimeout(()=>{failCount=0;el.classList.add('hidden')},300000)}}
-function unlockDevice(){let m=get('adhrs_master',null);if(btoa(masterKey.value)===m.pass){let d=get('adhrs_allowed_devices',[]);d.push(deviceFingerprint);set('adhrs_allowed_devices',d);location.reload()}else alert('Code incorrect')}
-function showRecover(){document.getElementById('loginBox').classList.add('hidden');document.getElementById('recoverBox').classList.remove('hidden');document.getElementById('recoverQ').innerText=get('adhrs_master',{}).q;}
-function recover(){let m=get('adhrs_master',null);if(btoa(recoverA.value.toLowerCase())===m.a){alert('Mot de passe: '+atob(m.pass));document.getElementById('recoverBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden')}else alert('Mauvaise réponse')}
-function changeMasterPass(){let np=newPassChange.value;if(np.length<6)return alert('Min 6');let m=get('adhrs_master',{});m.pass=btoa(np);set('adhrs_master',m);alert('Changé: '+np);}
-
-function showTab(n,el){document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));document.getElementById('tab-'+n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');if(n==='manage')renderManage();if(n==='part')renderList('partenaires');if(n==='activ')renderList('activites');if(n==='membres')renderMembres();if(n==='dons')renderDons();}
-let photoData='',aPhotoData='',pPhotoData='',editIndex=-1;
-photo.addEventListener('change',e=>{let r=new FileReader();r.onload=ev=>{photoData=ev.target.result;preview.innerHTML=`<img src="${photoData}" style="width:100%">`};r.readAsDataURL(e.target.files[0])});
-aPhoto.addEventListener('change',e=>{let r=new FileReader();r.onload=ev=>{aPhotoData=ev.target.result;aPreview.innerHTML=`<img src="${aPhotoData}" style="width:100%">`};r.readAsDataURL(e.target.files[0])});
-pPhoto.addEventListener('change',e=>{let r=new FileReader();r.onload=ev=>{pPhotoData=ev.target.result;pPreview.innerHTML=`<img src="${pPhotoData}" style="width:100%">`};r.readAsDataURL(e.target.files[0])});
-
+const PASS_DEFAULT="adhrs2024";
+function get(k,d){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch{return d}}
+function set(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function checkPass(){let p=document.getElementById('pass').value;let saved=get('adhrs_admin_pass',PASS_DEFAULT);if(p===saved){localStorage.setItem('adhrs_admin_ok','1');showAdmin()}else alert('Mot de passe incorrect')}
+function showAdmin(){document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').style.display='block';refresh()}
+function logout(){localStorage.removeItem('adhrs_admin_ok');location.reload()}
+if(localStorage.getItem('adhrs_admin_ok')) showAdmin();
+function showTab(t){document.querySelectorAll('[id^=tab-]').forEach(e=>e.style.display='none');document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).style.display='block';event.target.classList.add('active');}
+function toBase64(inp,targetId){let f=inp.files[0];if(!f)return;let r=new FileReader();r.onload=e=>{document.getElementById(targetId).value=e.target.result;let prev=document.getElementById(targetId.replace('_img','_prev'))||document.getElementById('a_prev');if(prev){prev.src=e.target.result;prev.style.display='block'}};r.readAsDataURL(f)}
 function publier(type){
- if(type==='annonces'){let t=titre.value.trim(),m=msg.value.trim();if(!t||!m)return alert('Titre+message');let arr=get('adhrs_annonces_local',[]);if(editIndex>=0){arr[editIndex]={...arr[editIndex],titre:t,message:m,lieu:lieu.value||'RDC',image:photoData||arr[editIndex].image};editIndex=-1;formTitle.innerText='📢 Publier Annonce';btnCancelEdit.classList.add('hidden')}else{arr.unshift({titre:t,message:m,lieu:lieu.value||'RDC',date:new Date().toLocaleDateString('fr-FR'),image:photoData||'logo.jpg',type:'annonce'})}set('adhrs_annonces_local',arr);titre.value='';msg.value='';photoData='';preview.innerHTML='';alert('Annonce publiée!');renderManage();}
- if(type==='activites'){let t=aTitre.value.trim(),m=aDesc.value.trim();if(!t||!m)return alert('Titre+desc');let arr=get('adhrs_activites_local',[]);arr.unshift({titre:t,description:m,lieu:aLieu.value||'RDC',date:new Date().toLocaleDateString('fr-FR'),image:aPhotoData||'logo.jpg',type:'activite'});set('adhrs_activites_local',arr);aTitre.value='';aDesc.value='';aPhotoData='';aPreview.innerHTML='';renderList('activites');alert('Activité ajoutée!')}
- if(type==='partenaires'){let t=pNom.value.trim(),m=pDesc.value.trim();if(!t||!m)return alert('Nom+desc');let arr=get('adhrs_partenaires_local',[]);arr.unshift({nom:t,description:m,lieu:pLieu.value||'Partenariat',date:new Date().toLocaleDateString('fr-FR'),image:pPhotoData||'logo.jpg',type:'partenariat'});set('adhrs_partenaires_local',arr);pNom.value='';pDesc.value='';pPhotoData='';pPreview.innerHTML='';renderList('partenaires');alert('Partenaire ajouté!')}
+ let obj={};if(type==='annonce'){obj={titre:val('a_titre'),message:val('a_msg'),lieu:val('a_lieu'),date:val('a_date')||new Date().toISOString().slice(0,10),image:val('a_img'),type:'annonce'};let a=get('adhrs_annonces_local',[]);a.unshift(obj);set('adhrs_annonces_local',a)}
+ if(type==='activite'){obj={titre:val('ac_titre'),message:val('ac_msg'),lieu:val('ac_lieu'),date:val('ac_date')||new Date().toISOString().slice(0,10),image:val('ac_img'),type:'activite'};let a=get('adhrs_activites_local',[]);a.unshift(obj);set('adhrs_activites_local',a)}
+ if(type==='partenaire'){obj={nom:val('p_nom'),description:val('p_desc'),image:val('p_img')};let a=get('adhrs_partenaires_local',[]);a.unshift(obj);set('adhrs_partenaires_local',a)}
+ alert('Publié! Va voir le site public, ça s\'affiche direct.');refresh();clearInputs();
 }
-function programmer(){let t=titre.value.trim(),m=msg.value.trim(),l=lieu.value.trim(),d=progDate.value;if(!t||!m||!d)return alert('Titre message date');let arr=get('adhrs_prog',[]);arr.push({titre:t,message:m,lieu:l||'RDC',dateProg:d,image:photoData||'logo.jpg',date:new Date().toLocaleDateString('fr-FR')});set('adhrs_prog',arr);alert('Programmé pour '+d)}
-function renderManage(){let type=typeManage.value;let map={annonces:'adhrs_annonces_local',activites:'adhrs_activites_local',partenaires:'adhrs_partenaires_local',membres:'adhrs_membres_local'};let arr=get(map[type],[]);listeManage.innerHTML=arr.map((a,i)=>`<div class="item"><img src="${a.image||'logo.jpg'}"><div style="flex:1"><b>${a.titre||a.nom}</b><br><small>${a.date||''}</small></div><button onclick="delPost('${type}',${i})" style="background:#e11d48;color:#fff;border:none;padding:6px 10px;border-radius:8px">🗑️</button></div>`).join('')||'Aucun';}
-function delPost(type,i){if(!confirm('Supprimer?'))return;let map={annonces:'adhrs_annonces_local',activites:'adhrs_activites_local',partenaires:'adhrs_partenaires_local',membres:'adhrs_membres_local'};let arr=get(map[type],[]);arr.splice(i,1);set(map[type],arr);renderManage();}
-function cancelEdit(){editIndex=-1;formTitle.innerText='📢 Publier Annonce';btnCancelEdit.classList.add('hidden');titre.value='';msg.value='';lieu.value='';photoData='';preview.innerHTML='';}
-function renderList(type){let key=type==='activites'?'adhrs_activites_local':'adhrs_partenaires_local';let arr=get(key,[]);let el=type==='activites'?listActiv:listPart;el.innerHTML=arr.map((a,i)=>`<div class="item"><img src="${a.image}"><div style="flex:1"><b>${a.titre||a.nom}</b></div></div>`).join('')||'Aucun';}
-function loadAppearance(){let cfg=get('adhrs_apparence',{});if(cfg.logo){currentLogo.src=cfg.logo;lockLogo.src=cfg.logo}}
-function changeLogo(){let f=newLogo.files[0];if(!f)return alert('Choisis image');let r=new FileReader();r.onload=e=>{let cfg=get('adhrs_apparence',{});cfg.logo=e.target.result;set('adhrs_apparence',cfg);currentLogo.src=cfg.logo;alert('Logo changé partout!')};r.readAsDataURL(f)}
-function changeBgColor(){let c=bgColor.value;let cfg=get('adhrs_apparence',{});cfg.bgColor=c;delete cfg.bgImage;set('adhrs_apparence',cfg);alert('Fond couleur changé!')}
-function changeBgImage(){let f=bgImage.files[0];if(!f)return alert('Choisis image');let r=new FileReader();r.onload=e=>{let cfg=get('adhrs_apparence',{});cfg.bgImage=e.target.result;set('adhrs_apparence',cfg);alert('Fond image changé!')};r.readAsDataURL(f)}
-function resetAppearance(){localStorage.removeItem('adhrs_apparence');alert('Réinitialisé');location.reload()}
-function addMembre(){let n=mNom.value.trim();if(!n)return alert('Nom');let arr=get('adhrs_membres_local',[]);arr.push({nom:n,tel:mTel.value,province:mProvince.value,image:'logo.jpg',date:new Date().toLocaleDateString('fr-FR')});set('adhrs_membres_local',arr);mNom.value='';mTel.value='';mProvince.value='';renderMembres();}
-function renderMembres(){let arr=get('adhrs_membres_local',[]);listeMembres.innerHTML=arr.map((a,i)=>`<div class="item"><img src="${a.image}"><div style="flex:1"><b>${a.nom}</b><br><small>${a.province||''}</small></div><button onclick="let ar=get('adhrs_membres_local',[]);ar.splice(${i},1);set('adhrs_membres_local',ar);renderMembres()" style="border:none;background:#fee;color:#e11d48;border-radius:8px;padding:6px">✕</button></div>`).join('')||'Aucun';}
-function addDon(){let n=dNom.value.trim(),mt=parseFloat(dMontant.value);if(!n||!mt)return alert('Nom+montant');let arr=get('adhrs_dons',[]);arr.unshift({nom:n,montant:mt,date:new Date().toLocaleDateString('fr-FR')});set('adhrs_dons',arr);const {jsPDF}=window.jspdf;let doc=new jsPDF();doc.text('ADHRS-RDC Recu',20,20);doc.text(`${n} - ${mt} USD`,20,40);doc.save(`recu-${n}.pdf`);if(dTel.value){let txt=`Merci ${n} - Recu ${mt}$ ADHRS`;window.open(`https://wa.me/${dTel.value}?text=${txt}`,'_blank')}renderDons();}
-function renderDons(){let arr=get('adhrs_dons',[]);listeDons.innerHTML=arr.map(a=>`<div class="item"><b>${a.nom} - ${a.montant}$</b></div>`).join('')||'Aucun';}
-initLock();
-</script></body></html>
+function val(id){return document.getElementById(id).value.trim()}
+function clearInputs(){document.querySelectorAll('.input').forEach(i=>{if(i.type!=='date'&&i.type!=='color')i.value=''})}
+function refresh(){
+ let ann=get('adhrs_annonces_local',[]);document.getElementById('list-ann').innerHTML=ann.map((a,i)=>`<div style="padding:8px;border-bottom:1px solid #334155"><b>${a.titre}</b> <button onclick="del('adhrs_annonces_local',${i})" style="float:right;background:#dc2626;border:none;color:#fff;padding:4px 8px;border-radius:6px">X</button><br><small>${a.lieu||''} ${a.date||''}</small></div>`).join('')||'<small>Aucune</small>';
+ let act=get('adhrs_activites_local',[]);document.getElementById('list-act').innerHTML=act.map((a,i)=>`<div style="padding:8px;border-bottom:1px solid #334155"><b>${a.titre}</b> <button onclick="del('adhrs_activites_local',${i})" style="float:right;background:#dc2626;border:none;color:#fff;padding:4px 8px;border-radius:6px">X</button></div>`).join('')||'<small>Aucune</small>';
+ let part=get('adhrs_partenaires_local',[]);document.getElementById('list-part').innerHTML=part.map((a,i)=>`<div style="padding:8px;border-bottom:1px solid #334155"><b>${a.nom||a.titre}</b> <button onclick="del('adhrs_partenaires_local',${i})" style="float:right;background:#dc2626;border:none;color:#fff;padding:4px 8px;border-radius:6px">X</button></div>`).join('')||'<small>Aucun</small>';
+ let memb=get('adhrs_membres_local',[]);document.getElementById('nb').innerText=memb.length;document.getElementById('list-memb').innerHTML=memb.map(m=>`<div style="padding:6px;border-bottom:1px solid #334155">${m.nom||m.tel||'Membre'}</div>`).join('')||'<small>Aucun membre enregistré localement</small>';
+ let app=get('adhrs_apparence',{});if(app.logo)document.getElementById('app_logo').value=app.logo;if(app.bgColor)document.getElementById('app_bg').value=app.bgColor;if(app.bgImage)document.getElementById('app_bgimg').value=app.bgImage;
+}
+function del(key,i){let a=get(key,[]);a.splice(i,1);set(key,a);refresh()}
+function saveApp(){let o={logo:val('app_logo'),bgColor:val('app_bg'),bgImage:val('app_bgimg')};set('adhrs_apparence',o);alert('Apparence sauvegardée! Recharge le site public.')}
+function clearApp(){localStorage.removeItem('adhrs_apparence');alert('Effacé')}
+function clearMemb(){if(confirm('Supprimer tous les membres locaux?')){localStorage.removeItem('adhrs_membres_local');refresh()}}
+function exportJson(type){
+ let data=[];let name='';if(type==='annonces'){data=get('adhrs_annonces_local',[]);name='annonces.json'}if(type==='activites'){data=get('adhrs_activites_local',[]);name='activites.json'}if(type==='partenaires'){data=get('adhrs_partenaires_local',[]);name='partenariats.json'}
+ let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download=name;a.click();
+}
+</script>
+</body>
+ </html>

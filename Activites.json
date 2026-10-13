@@ -1,26 +1,16 @@
 [
   {
-    "categorie": "FORMATION",
-    "titre": "Formation Droits Humains",
-    "date": "10 Oct 2026",
-    "description": "Formation de 30 jeunes defenseurs a Ngaliema."
+    "titre": "Ancienne activité...",
+    "description": "...",
+    "categorie": "Sensibilisation"
   },
   {
-    "categorie": "ASSISTANCE",
-    "titre": "Assistance Juridique",
-    "date": "08 Oct 2026",
-    "description": "Accompagnement famille vulnerable a Selembao."
-  },
-  {
-    "categorie": "SENSIBILISATION",
-    "titre": "Sensibilisation Ecole",
-    "date": "05 Oct 2026",
-    "description": "150 eleves sensibilises a Joli Parc."
-  },
-  {
-    "categorie": "PUBLICATION",
-    "titre": "Rapport Septembre 2026",
-    "date": "01 Oct 2026",
-    "description": "Rapport mensuel disponible au bureau ADHRS-RDC."
+    "id": "activite_adhesion_2027",
+    "titre": "📝 Inscription Ouverte - Adhésion Membres ADHRS-RDC 2027",
+    "description": "Lancement officiel des inscriptions...",
+    "categorie": "Adhésion et Recrutement",
+    "date": "30 Jan 2027 - 01 Mars 2027",
+    "lieu": "Kinshasa ",
+    "image": "adhesion-2027.jpg"
   }
 ]

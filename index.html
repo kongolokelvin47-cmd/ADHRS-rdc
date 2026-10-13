@@ -4,22 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ADHRS-RDC - Site Officiel</title>
-<script>const CONFIG_ADHRS={whatsappNumero:"243985924965"};</script>
+<script>const CONFIG_ADHRS={whatsappNumero:"243985924965", adminFile:"adhrs-kelvin-prive-2024.html"};</script>
 <script>
-// === SYSTÈME ADMIN ULTIME - LOGO & FOND & PUBLICATIONS LOCALES ===
 try{
   let cfg=JSON.parse(localStorage.getItem('adhrs_apparence')||'{}');
-  if(cfg.bgColor){
-    document.documentElement.style.background=cfg.bgColor;
-  }
-  if(cfg.bgImage){
-    document.documentElement.style.backgroundImage=`url(${cfg.bgImage})`;
-    document.documentElement.style.backgroundSize='cover';
-    document.documentElement.style.backgroundAttachment='fixed';
-  }
+  if(cfg.bgColor){document.documentElement.style.background=cfg.bgColor;}
+  if(cfg.bgImage){document.documentElement.style.backgroundImage=`url(${cfg.bgImage})`;document.documentElement.style.backgroundSize='cover';document.documentElement.style.backgroundAttachment='fixed';}
 }catch(e){}
 function getLocal(k,d){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch{return d}}
-// Vérifier publications programmées
 (function(){
   let prog=getLocal('adhrs_prog',[]), now=new Date(), toPub=prog.filter(a=>new Date(a.dateProg)<=now);
   if(toPub.length){
@@ -35,13 +27,12 @@ function getLocal(k,d){try{return JSON.parse(localStorage.getItem(k)||JSON.strin
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;background:#f2f4f7;color:#1a2e4a;padding-bottom:80px}
 .top{position:sticky;top:0;z-index:40;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 15px;box-shadow:0 2px 8px #0001}
-.top img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #0a4a8a}
+.top img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #0a4a8a;cursor:pointer}
 .icon-btn{font-size:22px;background:none;border:none;cursor:pointer;padding:6px}
 .search-box{margin:12px 15px;background:#fff;border-radius:24px;padding:11px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 4px #0001;position:relative}
 .search-box input{border:none;background:transparent;flex:1;outline:none;font-size:14px}
 #searchSuggest{position:absolute;top:48px;left:0;right:0;background:#fff;border-radius:14px;box-shadow:0 8px 20px #0002;z-index:35;max-height:320px;overflow:auto;display:none}
 #searchSuggest div{padding:10px 14px;border-bottom:1px solid #f2f2f2;cursor:pointer;font-size:13px}
-#searchSuggest div:hover{background:#f0f7ff}
 .don-banner{margin:12px 15px;background:linear-gradient(90deg,#0a4a8a 0%,#0d9a5a 100%);color:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
 .section{margin:12px 15px;background:#fff;border-radius:16px;box-shadow:0 2px 10px #0001;padding:14px}
 .section h2{font-size:16px;color:#0a4a8a;font-weight:800;border-left:4px solid #0a4a8a;padding-left:8px;margin-bottom:10px}
@@ -65,23 +56,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
 #menuDrawer.open{left:0}
 .menu-head{background:linear-gradient(135deg,#0a4a8a,#0d9a5a);color:#fff;padding:20px;display:flex;align-items:center;gap:12px}
 .menu-item{padding:15px 18px;display:flex;align-items:center;gap:12px;font-weight:700;color:#1a2e4a;border-bottom:1px solid #f0f2f5;cursor:pointer}
-.menu-item:hover{background:#f2f6ff}
 .menu-item span.ico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;font-size:19px}
 #overlay{position:fixed;inset:0;background:#0006;z-index:90;display:none}
 #overlay.show{display:block}
 .modal{position:fixed;inset:0;z-index:120;display:none;background:#0007;align-items:flex-start;justify-content:center;padding:18px 12px;overflow:auto}
 .modal.show{display:flex}
-.modal-box{background:#fff;width:100%;max-width:460px;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px #0004;animation:pop.25s}
+.modal-box{background:#fff;width:100%;max-width:460px;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px #0004;animation:pop .25s}
 @keyframes pop{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
 .modal-header{padding:14px 16px;font-weight:800;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;background:#f8fafc}
 .modal-body{padding:14px;max-height:82vh;overflow:auto;line-height:1.6}
-#splash{position:fixed;inset:0;background:#fff;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity.6s ease}
+#splash{position:fixed;inset:0;background:#fff;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s ease}
 #splash.hide{opacity:0;pointer-events:none}
 #splash img{width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid #0a4a8a;animation:pulse 1.5s infinite}
-#splash h2{margin-top:16px;color:#0a4a8a;font-weight:900;font-size:19px;text-align:center}
-#splash.sub{margin-top:8px;color:#1a2e4a;font-weight:700;font-size:14px;text-align:center;line-height:1.4}
-#splash.cta{margin-top:6px;color:#0d9a5a;font-weight:900;font-size:13px;letter-spacing:.6px}
-#splash.loader{margin-top:18px;width:36px;height:36px;border:3px solid #e5e7eb;border-top-color:#0a4a8a;border-radius:50%;animation:spin 1s linear infinite}
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
@@ -90,23 +76,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
 
 <div id="splash">
   <img src="logo.jpg" id="splashLogo" alt="ADHRS-RDC">
-  <h2>Bienvenue chez ADHRS-RDC</h2>
-  <div class="sub">Votre voix compte.<br>Vos droits comptent.</div>
-  <div class="cta">Rejoignez-nous</div>
-  <div class="loader"></div>
+  <h2 style="margin-top:12px">Bienvenue chez ADHRS-RDC</h2>
+  <div style="margin-top:8px;color:#1a2e4a;font-weight:700;font-size:14px;text-align:center">Votre voix compte.<br>Vos droits comptent.</div>
+  <div style="margin-top:6px;color:#0d9a5a;font-weight:900;font-size:13px">Rejoignez-nous</div>
+  <div id="splashLoader" style="margin-top:18px;width:36px;height:36px;border:3px solid #e5e7eb;border-top-color:#0a4a8a;border-radius:50%;animation:spin 1s linear infinite"></div>
 </div>
 
 <div id="overlay" onclick="closeAll()"></div>
-
 <div id="menuDrawer">
   <div class="menu-head"><img src="logo.jpg" class="site-logo" style="width:50px;height:50px;border-radius:50%;border:2px solid #fff"><div><div style="font-weight:900;font-size:16px">ADHRS-RDC</div><small>Protéger • Sensibiliser • Réinsérer</small></div></div>
-  <div class="menu-item" onclick="openSection('sec-feed')"><span class="ico" style="background:#0a4a8a">📰</span> Fil d'Actualité du Jour</div>
+  <div class="menu-item" onclick="openSection('sec-feed')"><span class="ico" style="background:#0a4a8a">📰</span> Fil d'Actualité</div>
   <div class="menu-item" onclick="openSection('sec-actions')"><span class="ico" style="background:#0d9a5a">🎯</span> Nos Actions Terrain</div>
   <div class="menu-item" onclick="openSection('sec-parts')"><span class="ico" style="background:#ff7a00">🤝</span> Nos Partenariats</div>
   <div class="menu-item" onclick="openSection('stats')"><span class="ico" style="background:#6b21a8">📊</span> Statistiques & Impact</div>
   <div class="menu-item" onclick="openSection('contact')"><span class="ico" style="background:#e11d48">🎁</span> Faire un Don</div>
   <div class="menu-item" onclick="openSection('contact')"><span class="ico" style="background:#188a3a">📩</span> Contact & Recommandation</div>
-  <div class="menu-item" onclick="location.href='admin.html'"><span class="ico" style="background:#111">⚙️</span> Admin (privé)</div>
 </div>
 
 <div class="modal" id="notifModal"><div class="modal-box"><div class="modal-header"><span>🔔 Notifications</span><button onclick="closeAll()" style="border:none;background:none;font-size:22px">✕</button></div><div class="modal-body" id="notifBody"></div></div></div>
@@ -114,68 +98,60 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
 
 <div class="top">
 <button class="icon-btn" onclick="openMenu()">☰</button>
-<img src="logo.jpg" class="site-logo" alt="ADHRS-RDC">
+<img src="logo.jpg" class="site-logo" alt="ADHRS-RDC" id="logoSecret">
 <button class="icon-btn" onclick="openNotif()">🔔</button>
 </div>
 
 <div class="search-box"><span>🔍</span><input id="searchInput" placeholder="Rechercher activité, ville..." oninput="filtrerIntelligent()"><div id="searchSuggest"></div></div>
-
-<div class="don-banner" onclick="openSection('contact')">
-<div style="font-size:32px">👥</div><div><div style="font-weight:800;font-size:16px">FAIRE UN DON</div><div style="font-size:11px;opacity:.9">Soutenez nos actions • 100% transparent</div></div>
-</div>
-
-<div class="section" id="sec-feed"><h2>📰 Fil d'Actualité du Jour</h2><div id="feed">Chargement annonces...</div></div>
+<div class="don-banner" onclick="openSection('contact')"><div style="font-size:32px">👥</div><div><div style="font-weight:800;font-size:16px">FAIRE UN DON</div><div style="font-size:11px;opacity:.9">Soutenez nos actions • 100% transparent</div></div></div>
+<div class="section" id="sec-feed"><h2>📰 Fil d'Actualité du Jour</h2><div id="feed">Chargement...</div></div>
 <div class="section" id="sec-actions"><h2>🎯 Nos Actions</h2><div id="actions">Chargement activités...</div></div>
-<div class="section" id="sec-parts"><h2>🤝 Nos Partenariats</h2><div id="parts">Chargement partenariats...</div></div>
-
-<div class="section" id="contact">
-<h2>📩 Contact - Déposer une Recommandation</h2>
-<input id="nom" class="input" placeholder="Votre nom complet">
-<input id="tel" class="input" placeholder="Votre numéro WhatsApp">
-<textarea id="msg" class="input" rows="4" placeholder="Écrivez votre recommandation..."></textarea>
-<button class="btn" id="btnRecom">Envoyer sur WhatsApp ADHRS</button>
-</div>
-
-<div class="stats" id="stats">
-<span id="nb-membres">👥 Chargement...</span>
-<span>📍 25 Provinces</span>
-<span>🏘️ 150+ Communautés</span>
-<span>✅ 98% Réussite</span>
-</div>
-
-<div class="bottom-nav">
-<a class="active" href="#" onclick="openSection('sec-feed')"><span>🏠</span><span>Accueil</span></a>
-<a href="#" onclick="openSection('sec-actions')"><span>🗓️</span><span>Activités</span></a>
-<a href="#" onclick="openSection('contact')"><span>🎁</span><span>Dons</span></a>
-<a href="#" onclick="openNotif()"><span>🔔</span><span>Notif</span></a>
-</div>
+<div class="section" id="sec-parts"><h2>🤝 Nos Partenariats</h2><div id="parts">Chargement...</div></div>
+<div class="section" id="contact"><h2>📩 Contact - Déposer une Recommandation</h2><input id="nom" class="input" placeholder="Votre nom complet"><input id="tel" class="input" placeholder="Votre numéro WhatsApp"><textarea id="msgContact" class="input" rows="4" placeholder="Écrivez votre recommandation..."></textarea><button class="btn" id="btnRecom">Envoyer sur WhatsApp ADHRS</button></div>
+<div class="stats" id="stats"><span id="nb-membres">👥 Membres: 0</span><span>📍 25 Provinces</span><span>🏘️ 150+ Communautés</span><span>✅ 98% Réussite</span></div>
+<div class="bottom-nav"><a class="active" href="#" onclick="openSection('sec-feed')"><span>🏠</span><span>Accueil</span></a><a href="#" onclick="openSection('sec-actions')"><span>🗓️</span><span>Activités</span></a><a href="#" onclick="openSection('contact')"><span>🎁</span><span>Dons</span></a><a href="#" onclick="openNotif()"><span>🔔</span><span>Notif</span></a></div>
 
 <script>
+// === CORRECTION VITESSE SPLASH 1.4s MAX ===
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    let s=document.getElementById('splash');
+    if(s){ s.classList.add('hide'); setTimeout(()=>s.style.display='none',500); }
+  },1400);
+});
+// Si page déjà chargée, ferme aussi après 1.4s
+setTimeout(()=>{
+  let s=document.getElementById('splash');
+  if(s && !s.classList.contains('hide')){ s.classList.add('hide'); setTimeout(()=>s.style.display='none',500); }
+},1600);
+
 let ALL_DATA=[];
 function getLikes(){return JSON.parse(localStorage.getItem('adhrs_likes')||'{}')}
 function setLikes(o){localStorage.setItem('adhrs_likes',JSON.stringify(o))}
 function getComs(){return JSON.parse(localStorage.getItem('adhrs_coms')||'{}')}
 function setComs(o){localStorage.setItem('adhrs_coms',JSON.stringify(o))}
-
 function applyLogoAndBg(){
   try{
     let cfg=getLocal('adhrs_apparence',{});
     if(cfg.logo){
-      document.querySelectorAll('img.site-logo, img[src="logo.jpg"]').forEach(im=>{
-        if(!im.id || im.id!=='splashLogo' || true){ im.src=cfg.logo }
-      });
+      document.querySelectorAll('img.site-logo').forEach(im=>im.src=cfg.logo);
       let sp=document.getElementById('splashLogo'); if(sp) sp.src=cfg.logo;
     }
     if(cfg.bgColor){ document.body.style.background=cfg.bgColor; }
     if(cfg.bgImage){ document.body.style.backgroundImage=`url(${cfg.bgImage})`; document.body.style.backgroundSize='cover'; document.body.style.backgroundAttachment='fixed'; }
   }catch(e){}
 }
-
+let pressTimer;let logoEl=document.getElementById('logoSecret');
+logoEl.addEventListener('touchstart',()=>{pressTimer=setTimeout(()=>{if(confirm('🔐 Accès administrateur unique ADHRS-RDC\nEs-tu Kelvin le patron?')){window.location.href=CONFIG_ADHRS.adminFile}},3000)});
+logoEl.addEventListener('touchend',()=>clearTimeout(pressTimer));
+logoEl.addEventListener('mousedown',()=>{pressTimer=setTimeout(()=>{if(confirm('🔐 Accès administrateur unique\nContinuer?')){window.location.href=CONFIG_ADHRS.adminFile}},3000)});
+logoEl.addEventListener('mouseup',()=>clearTimeout(pressTimer));
+let clicks=0; logoEl.addEventListener('click',()=>{clicks++; setTimeout(()=>clicks=0,800); if(clicks>=5){window.location.href=CONFIG_ADHRS.adminFile}});
 function openMenu(){document.getElementById('menuDrawer').classList.add('open');document.getElementById('overlay').classList.add('show')}
 function openSection(id){closeAll();document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
 function openNotif(){
   let b=document.getElementById('notifBody');
-  b.innerHTML=ALL_DATA.slice(0,8).map((a)=>`<div style="padding:12px;border-bottom:1px solid #eee;cursor:pointer" onclick="openDetailByTitle('${(a.titre||a.nom||'').replace(/'/g,"\\'")}')"><div style="display:flex;gap:10px"><img src="${a.image||'logo.jpg'}" style="width:48px;height:48px;border-radius:10px;object-fit:cover;background:#fff"><div><b style="font-size:13px">${a.titre||a.nom}</b><br><small style="color:#666">${(a.message||a.description||'').substring(0,70)}...</small><br><small style="color:#0a4a8a">${a.date||''} • ${a.lieu||''}</small></div></div></div>`).join('')||'Aucune notification';
+  b.innerHTML=ALL_DATA.slice(0,10).map((a)=>`<div style="padding:12px;border-bottom:1px solid #eee;cursor:pointer" onclick="openDetailByTitle('${(a.titre||a.nom||'').replace(/'/g,"\\'")}')"><div style="display:flex;gap:10px"><img src="${a.image||'logo.jpg'}" style="width:48px;height:48px;border-radius:10px;object-fit:cover"><div><b style="font-size:13px">${a.titre||a.nom}</b><br><small style="color:#666">${(a.message||a.description||'').substring(0,70)}...</small><br><small style="color:#0a4a8a">${a.date||''} • ${a.lieu||''}</small></div></div></div>`).join('')||'Aucune notification';
   document.getElementById('notifModal').classList.add('show');document.getElementById('overlay').classList.add('show');
 }
 function closeAll(){document.getElementById('menuDrawer').classList.remove('open');document.getElementById('notifModal').classList.remove('show');document.getElementById('detailModal').classList.remove('show');document.getElementById('overlay').classList.remove('show');document.getElementById('searchSuggest').style.display='none'}
@@ -185,7 +161,6 @@ function openDetail(a){
   document.getElementById('detailModal').classList.add('show');document.getElementById('overlay').classList.add('show');
 }
 function openDetailByTitle(t){ let a=ALL_DATA.find(x=>(x.titre||x.nom)===t); if(a) openDetail(a); }
-
 function cardHtml(a,i,type){
   let id=type+i, likes=getLikes(), coms=getComs();
   let lk=likes[id]||0, list=coms[id]||[];
@@ -204,7 +179,7 @@ function cardHtml(a,i,type){
       <button class="act" onclick="window.open('https://wa.me/?text=${share}','_blank')">↗️ Partager</button>
       <button class="act" style="margin-left:auto;color:#0a4a8a" onclick="openDetailByTitle('${(a.titre||a.nom||'').replace(/'/g,"\\'")}')">👁️ Voir</button>
     </div>
-    <div style="padding:0 12px 10px" onclick="event.stopPropagation()">${lastCom}${hiddenComs}<div id="c-${id}"></div></div>
+    <div style="padding:0 12px 10px" onclick="event.stopPropagation()">${lastCom}${hiddenComs}</div>
   </div>`;
 }
 window.like=function(id){let l=getLikes();if(l[id+'_me']){l[id]=(l[id]||1)-1;delete l[id+'_me']}else{l[id]=(l[id]||0)+1;l[id+'_me']=1}setLikes(l);document.getElementById('n-'+id).innerText=l[id]||0;document.getElementById('ic-'+id).innerText=l[id+'_me']?'❤️':'🤍'}
@@ -218,33 +193,20 @@ window.filtrerIntelligent=function(){
   sug.style.display='block';
   document.querySelectorAll('[data-text]').forEach(el=>{el.style.display=el.getAttribute('data-text').includes(q)?'block':'none'})
 }
-
 let bust='?v='+Date.now();
 Promise.all([
  fetch('annonces.json'+bust).then(r=>r.ok?r.json():[]).catch(()=>[]),
- fetch('activites.json'+bust).then(r=>r.ok?r.json():[]).catch(()=>[]),
- fetch('partenariats.json'+bust).then(r=>r.ok?r.json():[]).catch(()=>[])
+ fetch('activites.json'+bust).then(r=>r.ok?r.json():[]).catch(()=>{return fetch('activités.json'+bust).then(r=>r.json()).catch(()=>[])}),
+ fetch('partenariats.json'+bust).then(r=>r.ok?r.json():[]).catch(()=>{return fetch('Partenariats.json'+bust).then(r=>r.json()).catch(()=>[])})
 ]).then(([ann,act,part])=>{
   let localAnn=getLocal('adhrs_annonces_local',[]);
+  let localAct=getLocal('adhrs_activites_local',[]);
+  let localPart=getLocal('adhrs_partenaires_local',[]);
+  let localMemb=getLocal('adhrs_membres_local',[]);
   let allAnnonces=[...localAnn,...ann];
-  ALL_DATA=[...allAnnonces,...act,...part];
-  let feedData=[...allAnnonces].slice(0,10);
-  document.getElementById('feed').innerHTML=feedData.map((a,i)=>cardHtml(a,i,'ann')).join('')||'<p style="padding:10px">Aucune annonce. Va sur admin.html pour publier</p>';
-  document.getElementById('actions').innerHTML=act.map((a,i)=>cardHtml(a,i,'act')).join('')||'Aucune activité';
-  document.getElementById('parts').innerHTML=part.map((a,i)=>cardHtml(a,i,'part')).join('')||'Aucun partenariat';
-  applyLogoAndBg();
-});
-
-let membresLocal=getLocal('adhrs_membres_local',[]);
-if(membresLocal.length){document.getElementById('nb-membres').innerText=`👥 ${membresLocal.length} Adhérents (local)`}
-else{
-  fetch('membres.json'+bust).then(r=>r.json()).then(d=>{document.getElementById('nb-membres').innerText=`👥 ${d.length} Adhérents`}).catch(()=>{document.getElementById('nb-membres').innerText='👥 250+ Adhérents'});
-}
-
-document.getElementById('btnRecom').onclick=function(){
-  let nom=document.getElementById('nom').value.trim()||'Anonyme';
-  let tel=document.getElementById('tel').value.trim()||'Non fourni';
-  let msg=document.getElementById('msg').value.trim();
-  if(!msg){alert('Écrivez votre recommandation SVP');return}
-  let txt=`*NOUVELLE RECOMMANDATION ADHRS-RDC*%0A%0A*Nom:* ${nom}%0A*Tel:* ${tel}%0A*Message:*%0A${msg}`;
-  window.open(
+  let allActiv=[...localAct,...act];
+  let allPart=[...localPart,...part];
+  ALL_DATA=[...allAnnonces,...allActiv,...allPart];
+  document.getElementById('feed').innerHTML=allAnnonces.slice(0,10).map((a,i)=>cardHtml(a,i,'ann')).join('')||'<p style="padding:10px">Aucune annonce. Publie depuis admin</p>';
+  document.getElementById('actions').innerHTML=allActiv.map((a,i)=>cardHtml(a,i,'act')).join('')||'Aucune activité';
+  

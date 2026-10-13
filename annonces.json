@@ -1,26 +1,10 @@
 [
   {
-    "titre": "Bienvenue sur le site officiel ADHRS-RDC",
-    "date": "12 Octobre 2026",
-    "lieu": "Kinshasa",
-    "message": "L'Association de Défense des Droits Humains et de Réinsertion Sociale lance officiellement son site web. Restez connectés pour nos prochaines activités.",
-    "type": "info"
-  },
-  {
-    "titre": "Réunion Générale des Membres",
-    "date": "15 Octobre 2026 à 10h00",
-    "lieu": "Commune de Ngaliema, Quartier Joli Parc",
-    "message": "Tous les membres ADHRS-RDC de Kinshasa sont invités à la réunion générale mensuelle. Présence obligatoire. Ordre du jour : Plan d'action Octobre-Décembre 2026.",
-    "type": "reunion"
+    "titre": "Distribution des kits à Masina",
+    "message": "ADHRS-RDC a distribué 100 kits...",
+    "date": "13 Oct 2026",
+    "lieu": " Kinshasa",
+    "type": "terrain",
+    "image": "adhesion-2027.jpg"
   }
 ]
-
-{
-  "titre": "🚀 Campagne d'Adhésion 2027 - Lancement 30 Janvier 2027",
-  "message": "OFFICIEL: ADHRS-RDC lance sa grande Campagne Nationale d'Adhésion 2027!\n\n📅 Date de début: 30 JANVIER 2027\n📍 Lieu: 25 Provinces, 150+ Communautés\n\nTu rêves d'une RDC juste? Tu veux défendre les droits humains dans ta communauté?\n\nC'EST LE MOMENT DE NOUS REJOINDRE!\n\n✅ Conditions d'adhésion:\n- Être de bonne moralité\n- Aimer le travail communautaire\n- Vouloir lutter contre les antivaleurs\n\n👉 Comment adhérer?\nEnvoie 'ADHESION + NOM + PROVINCE' sur WhatsApp 0985924965 ou via le formulaire sur notre site.\n\nRejoins la famille ADHRS-RDC!\n#ADHRS2027 #DroitsHumains #30Janvier2027",
-  "date": "30 Jan 2027",
-  "lieu": "RDC - Kinshasa",
-  "type": "ADHESION",
-  "categorie": "Adhésion des cadres et des membres",
-  "image": "adhesion-2027.jpg"
-}

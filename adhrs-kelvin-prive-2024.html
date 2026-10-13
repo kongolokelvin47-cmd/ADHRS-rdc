@@ -2,130 +2,442 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADMIN ADHRS - Kelvin</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ADMIN PRO ADHRS-RDC - Kelvin</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#0f172a;color:#fff;padding:15px}
-.login{max-width:380px;margin:80px auto;background:#1e293b;padding:25px;border-radius:16px;text-align:center}
-.input{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff}
-.btn{width:100%;padding:12px;background:#0d9a5a;border:none;border-radius:8px;color:#fff;font-weight:800;cursor:pointer;margin-top:8px}
-.btn-blue{background:#0a4a8a}.btn-red{background:#dc2626}.card{background:#1e293b;padding:14px;border-radius:12px;margin:10px 0}
-.tabs{display:flex;gap:6px;overflow:auto;margin:12px 0}.tab{padding:10px 14px;background:#1e293b;border-radius:8px;cursor:pointer;white-space:nowrap;font-size:13px;font-weight:700}
-.tab.active{background:#0a4a8a}img.prev{width:100%;max-height:200px;object-fit:contain;background:#fff;border-radius:8px;margin-top:6px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial;background:#0f172a;color:#e2e8f0;padding:12px}
+.login{max-width:400px;margin:70px auto;background:#1e293b;padding:24px;border-radius:18px;text-align:center}
+.input,select,textarea{width:100%;padding:11px;margin:6px 0;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff;font-size:14px}
+.btn{width:100%;padding:12px;background:#0d9a5a;border:none;border-radius:10px;color:#fff;font-weight:800;cursor:pointer;margin:6px 0}
+.btn-b{background:#0a4a8a}.btn-r{background:#dc2626}
+.card{background:#1e293b;padding:14px;border-radius:14px;margin:10px 0}
+.tabs{display:flex;gap:5px;overflow:auto;position:sticky;top:0;background:#0f172a;padding:8px 0;z-index:9}
+.tab{padding:9px 12px;background:#1e293b;border-radius:10px;cursor:pointer;white-space:nowrap;font-size:12px;font-weight:800}
+.tab.active{background:#0d9a5a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{background:#0a4a8a;padding:12px;border-radius:12px;text-align:center}
+.stat b{font-size:20px;display:block}
+.prov{display:inline-block;padding:4px 8px;margin:3px;background:#0f172a;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid #334155}
+.prov.active{background:#0d9a5a;border-color:#0d9a5a}
+.list-item{padding:10px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center}
+.badge{padding:2px 8px;background:#0d9a5a;border-radius:20px;font-size:10px}
 </style>
 </head>
 <body>
 
 <div id="loginBox" class="login">
-<h2>🔐 ADMIN ADHRS-RDC</h2><p style="margin:8px 0;font-size:13px;color:#94a3b8">Accès réservé à Kelvin</p>
-<input id="pass" type="password" class="input" placeholder="Mot de passe admin">
-<button class="btn" onclick="checkPass()">Entrer</button>
-<small style="color:#64748b;display:block;margin-top:10px">Mot de passe par défaut: adhrs2024</small>
+<h2>🔐 ADMIN PRO ADHRS</h2>
+<p style="color:#94a3b8;font-size:13px;margin:6px 0">26 Provinces - Kelvin</p>
+<input id="pass" type="password" class="input" placeholder="Mot de passe">
+<button class="btn" onclick="check()">Entrer</button>
+<small style="color:#64748b">Défaut: adhrs2024</small>
 </div>
 
-<div id="adminBox" style="display:none">
-<div style="display:flex;justify-content:space-between;align-items:center"><h2>👑 ADHRS Admin - Kelvin</h2><button class="btn-red" style="padding:8px 12px;border-radius:8px;border:none;color:#fff" onclick="logout()">Sortir</button></div>
+<div id="admin" style="display:none">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h3>👑 ADHRS-RDC PRO</h3>
+<button onclick="logout()" style="background:#dc2626;color:#fff;border:none;padding:8px 12px;border-radius:8px">Sortir</button>
+</div>
 
 <div class="tabs">
-<div class="tab active" onclick="showTab('ann')">📰 Annonces</div>
-<div class="tab" onclick="showTab('act')">🎯 Activités</div>
-<div class="tab" onclick="showTab('part')">🤝 Partenariats</div>
-<div class="tab" onclick="showTab('app')">🎨 Apparence</div>
-<div class="tab" onclick="showTab('memb')">👥 Membres</div>
+<div class="tab active" onclick="tab('dash')">📊 Dashboard</div>
+<div class="tab" onclick="tab('pub')">📰 Publier</div>
+<div class="tab" onclick="tab('memb')">👥 Membres</div>
+<div class="tab" onclick="tab('class')">🗂️ Classeur</div>
+<div class="tab" onclick="tab('design')">🎨 Design</div>
+<div class="tab" onclick="tab('prov')">🗺️ Provinces</div>
 </div>
 
-<div id="tab-ann" class="card">
-<h3>Publier une Annonce</h3>
-<input id="a_titre" class="input" placeholder="Titre">
-<textarea id="a_msg" class="input" rows="3" placeholder="Message"></textarea>
-<input id="a_lieu" class="input" placeholder="Lieu (ex: Kinshasa)">
-<input id="a_date" type="date" class="input">
-<input id="a_img" class="input" placeholder="Lien image (ou laisse vide)">
-<input type="file" id="a_file" accept="image/*" class="input" onchange="toBase64(this,'a_img')">
-<img id="a_prev" class="prev" style="display:none">
-<button class="btn" onclick="publier('annonce')">📢 Publier Maintenant</button>
-<div id="list-ann"></div>
+<div id="t-dash" class="card">
+<h3>📊 Statistiques Nationales</h3>
+<div class="grid" id="stats"></div>
+<div style="margin-top:12px">
+<h4>📍 Répartition par Province</h4>
+<div id="provStats" style="margin-top:8px"></div>
+</div>
 </div>
 
-<div id="tab-act" class="card" style="display:none">
-<h3>Publier Activité Terrain</h3>
-<input id="ac_titre" class="input" placeholder="Titre activité">
-<textarea id="ac_msg" class="input" rows="3" placeholder="Description"></textarea>
-<input id="ac_lieu" class="input" placeholder="Lieu">
-<input id="ac_date" type="date" class="input">
-<input id="ac_img" class="input" placeholder="Lien image">
-<input type="file" id="ac_file" accept="image/*" class="input" onchange="toBase64(this,'ac_img')">
-<button class="btn" onclick="publier('activite')">🎯 Publier Activité</button>
-<div id="list-act"></div>
+<div id="t-pub" class="card" style="display:none">
+<h3>📰 Publier (Annonce / Activité / Partenariat)</h3>
+<select id="pub_type" class="input">
+<option value="annonce">Annonce</option>
+<option value="activite">Activité terrain</option>
+<option value="partenaire">Partenariat</option>
+</select>
+<input id="pub_titre" class="input" placeholder="Titre">
+<textarea id="pub_msg" class="input" rows="3" placeholder="Message / Description"></textarea>
+<select id="pub_province" class="input"></select>
+<input id="pub_territoire" class="input" placeholder="Territoire (optionnel)">
+<input id="pub_commune" class="input" placeholder="Commune / Ville (optionnel)">
+<input id="pub_quartier" class="input" placeholder="Quartier (optionnel)">
+<input id="pub_lieu" class="input" placeholder="Lieu précis">
+<input id="pub_date" type="date" class="input">
+<input id="pub_img" class="input" placeholder="Lien image">
+<input type="file" accept="image/*" class="input" onchange="toB64(this,'pub_img')">
+<button class="btn" onclick="publier()">📢 Publier pour cette Province</button>
+<div id="list-pub" style="margin-top:10px"></div>
 </div>
 
-<div id="tab-part" class="card" style="display:none">
-<h3>Ajouter Partenariat</h3>
-<input id="p_nom" class="input" placeholder="Nom partenaire">
-<textarea id="p_desc" class="input" rows="2" placeholder="Description"></textarea>
-<input id="p_img" class="input" placeholder="Lien logo">
-<input type="file" accept="image/*" class="input" onchange="toBase64(this,'p_img')">
-<button class="btn" onclick="publier('partenaire')">🤝 Ajouter</button>
-<div id="list-part"></div>
+<div id="t-memb" class="card" style="display:none">
+<h3>👥 Ajouter Membre</h3>
+<input id="m_nom" class="input" placeholder="Nom complet *">
+<input id="m_tel" class="input" placeholder="WhatsApp / Tél *">
+<input id="m_role" class="input" placeholder="Rôle (ex: Volontaire, Chef)">
+<select id="m_province" class="input"></select>
+<input id="m_territoire" class="input" placeholder="Territoire (optionnel)">
+<input id="m_commune" class="input" placeholder="Commune (optionnel)">
+<input id="m_quartier" class="input" placeholder="Quartier (optionnel)">
+<button class="btn" onclick="addMembre()">➕ Ajouter Membre</button>
+<div style="margin-top:10px">
+<input id="searchM" class="input" placeholder="🔍 Rechercher membre..." oninput="renderMemb()">
 </div>
-
-<div id="tab-app" class="card" style="display:none">
-<h3>🎨 Apparence Site Public</h3>
-<label>Logo (image):</label><input id="app_logo" class="input" placeholder="Lien logo ou base64">
-<input type="file" accept="image/*" class="input" onchange="toBase64(this,'app_logo')">
-<label>Couleur fond:</label><input id="app_bg" type="color" class="input" value="#f2f4f7">
-<label>Image de fond (lien):</label><input id="app_bgimg" class="input" placeholder="Lien image fond">
-<button class="btn btn-blue" onclick="saveApp()">💾 Sauvegarder Apparence</button>
-<button class="btn-red btn" onclick="clearApp()">Effacer Apparence</button>
-</div>
-
-<div id="tab-memb" class="card" style="display:none">
-<h3>👥 Membres: <span id="nb"></span></h3>
 <div id="list-memb"></div>
-<button class="btn-red btn" onclick="clearMemb()">Supprimer tous</button>
+ </div>
+ <div id="t-class" class="card" style="display:none">
+<h3>🗂️ Classeur National par Province</h3>
+<div id="filterProv" style="margin:8px 0"></div>
+<select id="filterTerr" class="input" onchange="renderClasseur()">
+<option value="">Tous Territoires</option>
+</select>
+<div id="classeur"></div>
+</div>
+
+<div id="t-design" class="card" style="display:none">
+<h3>🎨 Gérer Design du Site Public</h3>
+<label>Logo URL</label>
+<input id="d_logo" class="input">
+<input type="file" accept="image/*" class="input" onchange="toB64(this,'d_logo')">
+<label>Titre site</label>
+<input id="d_titre" class="input" placeholder="ADHRS-RDC">
+<label>Slogan</label>
+<input id="d_slogan" class="input" placeholder="Unis pour les droits">
+<label>Couleur principale</label>
+<input id="d_color" type="color" class="input" value="#0a4a8a">
+<label>Couleur accent</label>
+<input id="d_accent" type="color" class="input" value="#0d9a5a">
+<label>Couleur fond public</label>
+<input id="d_bg" type="color" class="input" value="#f2f4f7">
+<label>Image fond (URL)</label>
+<input id="d_bgimg" class="input" placeholder="Lien image fond">
+<label>Texte bannière</label>
+<input id="d_banner" class="input" placeholder="Bienvenue sur ADHRS">
+<button class="btn btn-b" onclick="saveDesign()">💾 Appliquer Design</button>
+<button class="btn btn-r" onclick="clearDesign()">Réinitialiser</button>
+<div style="margin-top:10px">
+<h4>Changer mot de passe admin</h4>
+<input id="newPass" class="input" placeholder="Nouveau mot de passe">
+<button class="btn" onclick="changePass()">Changer</button>
+</div>
+</div>
+
+<div id="t-prov" class="card" style="display:none">
+<h3>🗺️ Gestion 26 Provinces RDC</h3>
+<div id="listProvManage"></div>
 </div>
 
 <div class="card" style="background:#0a4a8a">
-<h4>📦 Export pour GitHub (optionnel)</h4><small>Si tu veux que tout le monde voie même sans localStorage, exporte et remplace les.json sur GitHub</small><br><br>
-<button class="btn" onclick="exportJson('annonces')">Exporter annonces.json</button>
-<button class="btn" onclick="exportJson('activites')">Exporter activites.json</button>
-<button class="btn" onclick="exportJson('partenaires')">Exporter partenariats.json</button>
+<h4>📦 Export JSON pour GitHub</h4>
+<button class="btn" onclick="exportAll()">Tout Exporter (membres + annonces + activités + design)</button>
 </div>
+
 </div>
 
 <script>
-const PASS_DEFAULT="adhrs2024";
-function get(k,d){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch{return d}}
-function set(k,v){localStorage.setItem(k,JSON.stringify(v))}
-function checkPass(){let p=document.getElementById('pass').value;let saved=get('adhrs_admin_pass',PASS_DEFAULT);if(p===saved){localStorage.setItem('adhrs_admin_ok','1');showAdmin()}else alert('Mot de passe incorrect')}
-function showAdmin(){document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').style.display='block';refresh()}
-function logout(){localStorage.removeItem('adhrs_admin_ok');location.reload()}
-if(localStorage.getItem('adhrs_admin_ok')) showAdmin();
-function showTab(t){document.querySelectorAll('[id^=tab-]').forEach(e=>e.style.display='none');document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).style.display='block';event.target.classList.add('active');}
-function toBase64(inp,targetId){let f=inp.files[0];if(!f)return;let r=new FileReader();r.onload=e=>{document.getElementById(targetId).value=e.target.result;let prev=document.getElementById(targetId.replace('_img','_prev'))||document.getElementById('a_prev');if(prev){prev.src=e.target.result;prev.style.display='block'}};r.readAsDataURL(f)}
-function publier(type){
- let obj={};if(type==='annonce'){obj={titre:val('a_titre'),message:val('a_msg'),lieu:val('a_lieu'),date:val('a_date')||new Date().toISOString().slice(0,10),image:val('a_img'),type:'annonce'};let a=get('adhrs_annonces_local',[]);a.unshift(obj);set('adhrs_annonces_local',a)}
- if(type==='activite'){obj={titre:val('ac_titre'),message:val('ac_msg'),lieu:val('ac_lieu'),date:val('ac_date')||new Date().toISOString().slice(0,10),image:val('ac_img'),type:'activite'};let a=get('adhrs_activites_local',[]);a.unshift(obj);set('adhrs_activites_local',a)}
- if(type==='partenaire'){obj={nom:val('p_nom'),description:val('p_desc'),image:val('p_img')};let a=get('adhrs_partenaires_local',[]);a.unshift(obj);set('adhrs_partenaires_local',a)}
- alert('Publié! Va voir le site public, ça s\'affiche direct.');refresh();clearInputs();
+const PROVINCES = ["Kinshasa","Kongo-Central","Kwango","Kwilu","Mai-Ndombe","Kasaï","Kasaï-Central","Kasaï-Oriental","Lomami","Sankuru","Maniema","Sud-Kivu","Nord-Kivu","Ituri","Haut-Uélé","Bas-Uélé","Tshopo","Haut-Lomami","Lualaba","Haut-Katanga","Tanganyika","Sud-Ubangi","Nord-Ubangi","Mongala","Équateur","Tshuapa"];
+const PASS_DEFAULT = "adhrs2024";
+
+const get = (k,d) => {
+  try{ return JSON.parse(localStorage.getItem(k) || JSON.stringify(d)) }
+  catch{ return d }
+};
+const set = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+const val = id => document.getElementById(id).value.trim();
+
+function check(){
+  let p = val('pass');
+  let s = get('adhrs_admin_pass', PASS_DEFAULT);
+  if(p === s){
+    localStorage.setItem('adhrs_admin_ok','1');
+    show();
+  } else alert('Mauvais mot de passe');
 }
-function val(id){return document.getElementById(id).value.trim()}
-function clearInputs(){document.querySelectorAll('.input').forEach(i=>{if(i.type!=='date'&&i.type!=='color')i.value=''})}
-function refresh(){
- let ann=get('adhrs_annonces_local',[]);document.getElementById('list-ann').innerHTML=ann.map((a,i)=>`<div style="padding:8px;border-bottom:1px solid #334155"><b>${a.titre}</b> <button onclick="del('adhrs_annonces_local',${i})" style="float:right;background:#dc2626;border:none;color:#fff;padding:4px 8px;border-radius:6px">X</button><br><small>${a.lieu||''} ${a.date||''}</small></div>`).join('')||'<small>Aucune</small>';
- let act=get('adhrs_activites_local',[]);document.getElementById('list-act').innerHTML=act.map((a,i)=>`<div style="padding:8px;border-bottom:1px solid #334155"><b>${a.titre}</b> <button onclick="del('adhrs_activites_local',${i})" style="float:right;background:#dc2626;border:none;color:#fff;padding:4px 8px;border-radius:6px">X</button></div>`).join('')||'<small>Aucune</small>';
- let part=get('adhrs_partenaires_local',[]);document.getElementById('list-part').innerHTML=part.map((a,i)=>`<div style="padding:8px;border-bottom:1px solid #334155"><b>${a.nom||a.titre}</b> <button onclick="del('adhrs_partenaires_local',${i})" style="float:right;background:#dc2626;border:none;color:#fff;padding:4px 8px;border-radius:6px">X</button></div>`).join('')||'<small>Aucun</small>';
- let memb=get('adhrs_membres_local',[]);document.getElementById('nb').innerText=memb.length;document.getElementById('list-memb').innerHTML=memb.map(m=>`<div style="padding:6px;border-bottom:1px solid #334155">${m.nom||m.tel||'Membre'}</div>`).join('')||'<small>Aucun membre enregistré localement</small>';
- let app=get('adhrs_apparence',{});if(app.logo)document.getElementById('app_logo').value=app.logo;if(app.bgColor)document.getElementById('app_bg').value=app.bgColor;if(app.bgImage)document.getElementById('app_bgimg').value=app.bgImage;
+function show(){
+  document.getElementById('loginBox').style.display='none';
+  document.getElementById('admin').style.display='block';
+  init();
 }
-function del(key,i){let a=get(key,[]);a.splice(i,1);set(key,a);refresh()}
-function saveApp(){let o={logo:val('app_logo'),bgColor:val('app_bg'),bgImage:val('app_bgimg')};set('adhrs_apparence',o);alert('Apparence sauvegardée! Recharge le site public.')}
-function clearApp(){localStorage.removeItem('adhrs_apparence');alert('Effacé')}
-function clearMemb(){if(confirm('Supprimer tous les membres locaux?')){localStorage.removeItem('adhrs_membres_local');refresh()}}
-function exportJson(type){
- let data=[];let name='';if(type==='annonces'){data=get('adhrs_annonces_local',[]);name='annonces.json'}if(type==='activites'){data=get('adhrs_activites_local',[]);name='activites.json'}if(type==='partenaires'){data=get('adhrs_partenaires_local',[]);name='partenariats.json'}
- let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download=name;a.click();
+function logout(){
+  localStorage.removeItem('adhrs_admin_ok');
+  location.reload();
+}
+if(localStorage.getItem('adhrs_admin_ok')) show();
+
+function init(){
+  let opts = PROVINCES.map(p=>`<option value="${p}">${p}</option>`).join('');
+  document.getElementById('pub_province').innerHTML = '<option value="">-- Choisir Province --</option>' + opts + '<option value="Nationale">Nationale (Toutes provinces)</option>';
+  document.getElementById('m_province').innerHTML = '<option value="">-- Province du membre --</option>' + opts;
+  document.getElementById('filterProv').innerHTML = PROVINCES.map(p=>`<span class="prov" onclick="filterProv('${p}')">${p}</span>`).join('') + ' <span class="prov active" onclick="filterProv(\'\')" style="background:#0a4a8a">Tous</span>';
+
+  let d = get('adhrs_apparence',{});
+  if(d.logo) document.getElementById('d_logo').value = d.logo;
+  if(d.titre) document.getElementById('d_titre').value = d.titre;
+  if(d.slogan) document.getElementById('d_slogan').value = d.slogan;
+  if(d.color) document.getElementById('d_color').value = d.color;
+  if(d.accent) document.getElementById('d_accent').value = d.accent;
+  if(d.bg) document.getElementById('d_bg').value = d.bg;
+  if(d.bgImage) document.getElementById('d_bgimg').value = d.bgImage;
+  if(d.banner) document.getElementById('d_banner').value = d.banner;
+
+  renderAll();
+}
+
+let currentFilter = '';
+
+function tab(t){
+  document.querySelectorAll('[id^=t-]').forEach(e=>e.style.display='none');
+  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
+  document.getElementById('t-'+t).style.display='block';
+  event.target.classList.add('active');
+  renderAll();
+}
+
+function toB64(inp,t){
+  let f = inp.files[0];
+  if(!f) return;
+  let r = new FileReader();
+  r.onload = e => document.getElementById(t).value = e.target.result;
+  r.readAsDataURL(f);
+}
+
+function publier(){
+  let type = val('pub_type');
+  let obj = {
+    titre: val('pub_titre'),
+    message: val('pub_msg'),
+    province: val('pub_province') || 'Nationale',
+    territoire: val('pub_territoire'),
+    commune: val('pub_commune'),
+    quartier: val('pub_quartier'),
+    lieu: val('pub_lieu'),
+    date: val('pub_date') || new Date().toISOString().slice(0,10),
+    image: val('pub_img'),
+    type: type
+  };
+  if(!obj.titre) return alert('Titre obligatoire');
+  if(type === 'annonce'){
+    let a = get('adhrs_annonces_local',[]);
+    a.unshift(obj);
+    set('adhrs_annonces_local',a);
+  }
+  if(type === 'activite'){
+    let a = get('adhrs_activites_local',[]);
+    a.unshift(obj);
+    set('adhrs_activites_local',a);
+  }
+  if(type === 'partenaire'){
+    let a = get('adhrs_partenaires_local',[]);
+    a.unshift({nom:obj.titre, description:obj.message, province:obj.province, image:obj.image});
+    set('adhrs_partenaires_local',a);
+  }
+  alert('Publié pour ' + obj.province + '!');
+  renderAll();
+}
+
+function addMembre(){
+  let m = {
+    nom: val('m_nom'),
+    tel: val('m_tel'),
+    role: val('m_role'),
+    province: val('m_province'),
+    territoire: val('m_territoire'),
+    commune: val('m_commune'),
+    quartier: val('m_quartier'),
+    date: Date.now()
+  };
+  if(!m.nom ||!m.tel) return alert('Nom et téléphone obligatoires');
+  let arr = get('adhrs_membres_local',[]);
+  arr.unshift(m);
+  set('adhrs_membres_local',arr);
+  alert('Membre ajouté dans ' + (m.province || 'sans province'));
+  renderAll();
+}
+ function renderAll(){
+  renderStats();
+  renderPub();
+  renderMemb();
+  renderClasseur();
+  renderProvManage();
+}
+
+function renderStats(){
+  let memb = get('adhrs_membres_local',[]);
+  let ann = get('adhrs_annonces_local',[]);
+  let act = get('adhrs_activites_local',[]);
+  let part = get('adhrs_partenaires_local',[]);
+
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><b>${memb.length}</b>Membres</div>
+    <div class="stat"><b>${ann.length}</b>Annonces</div>
+    <div class="stat"><b>${act.length}</b>Activités</div>
+    <div class="stat"><b>${part.length}</b>Partenaires</div>
+  `;
+
+  let counts = {};
+  PROVINCES.forEach(p=>counts[p]=0);
+  memb.forEach(m=>{
+    if(m.province && counts[m.province]!== undefined) counts[m.province]++
+  });
+
+  let html = Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([p,c])=>`
+    <div style="display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #334155">
+      <span>${p}</span><span class="badge">${c} membres</span>
+    </div>
+  `).join('');
+
+  document.getElementById('provStats').innerHTML = html;
+}
+
+function renderPub(){
+  let ann = get('adhrs_annonces_local',[]).map((a,i)=>({...a,_i:i,_t:'adhrs_annonces_local'}));
+  let act = get('adhrs_activites_local',[]).map((a,i)=>({...a,_i:i,_t:'adhrs_activites_local'}));
+  let all = [...ann,...act].slice(0,20);
+
+  document.getElementById('list-pub').innerHTML = all.map(a=>`
+    <div class="list-item">
+      <span><b>${a.titre}</b><br><small>${a.province||''} ${a.territoire||''} ${a.date||''}</small></span>
+      <button onclick="del('${a._t}',${a._i})" style="background:#dc2626;color:#fff;border:none;padding:6px 10px;border-radius:6px">X</button>
+    </div>
+  `).join('') || '<small>Aucune publication</small>';
+}
+
+function renderMemb(){
+  let q = (document.getElementById('searchM')?.value || '').toLowerCase();
+  let arr = get('adhrs_membres_local',[]).filter(m=>(m.nom + m.tel + (m.province||'') + (m.commune||'')).toLowerCase().includes(q));
+
+  document.getElementById('list-memb').innerHTML = arr.map(m=>`
+    <div class="list-item">
+      <span><b>${m.nom}</b> - ${m.role||'Membre'}<br>
+      <small>${m.province||''} ${m.territoire?'/ '+m.territoire:''} ${m.commune?'/ '+m.commune:''} ${m.quartier?'/ '+m.quartier:''} | ${m.tel}</small></span>
+      <button onclick="delByName('${m.nom.replace(/'/g, "\\'")}')" style="background:#dc2626;color:#fff;border:none;padding:6px 10px;border-radius:6px">Suppr</button>
+    </div>
+  `).join('') || '<small>Aucun membre</small>';
+}
+
+function filterProv(p){
+  currentFilter = p;
+  document.querySelectorAll('#filterProv.prov').forEach(e=>e.classList.remove('active'));
+  renderClasseur();
+}
+
+function renderClasseur(){
+  let memb = get('adhrs_membres_local',[]);
+  if(currentFilter) memb = memb.filter(m=>m.province === currentFilter);
+
+  let terr = [...new Set(memb.map(m=>m.territoire).filter(Boolean))];
+  document.getElementById('filterTerr').innerHTML = '<option value="">Tous Territoires</option>' + terr.map(t=>`<option>${t}</option>`).join('');
+
+  let fTerr = val('filterTerr');
+  if(fTerr) memb = memb.filter(m=>m.territoire === fTerr);
+
+  let byComm = {};
+  memb.forEach(m=>{
+    let k = (m.commune||'Sans commune') + ' | ' + (m.territoire||'');
+    if(!byComm[k]) byComm[k]=[];
+    byComm[k].push(m);
+  });
+
+  let html = Object.entries(byComm).map(([k,arr])=>`
+    <div style="margin:8px 0;background:#0f172a;padding:8px;border-radius:10px">
+      <b>${k} (${arr.length})</b>
+      <div>${arr.map(m=>`• ${m.nom} - ${m.quartier||''} - ${m.tel} ${m.role?`[${m.role}]`:''}`).join('<br>')}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('classeur').innerHTML = html || '<small>Aucun membre pour ce filtre. Tu peux laisser territoire/commune/quartier vide si tu veux classer sans préciser.</small>';
+}
+
+function renderProvManage(){
+  document.getElementById('listProvManage').innerHTML = PROVINCES.map(p=>{
+    let c = get('adhrs_membres_local',[]).filter(m=>m.province===p).length;
+    let a = get('adhrs_annonces_local',[]).filter(x=>x.province===p).length;
+    return `<div class="list-item"><span>${p}<br><small>${c} membres, ${a} pubs</small></span>
+      <button onclick="publierProv('${p}')" style="background:#0d9a5a;color:#fff;border:none;padding:6px 10px;border-radius:6px">Publier pour ${p}</button>
+    </div>`;
+  }).join('');
+}
+
+function publierProv(p){
+  document.getElementById('pub_province').value = p;
+  document.querySelectorAll('[id^=t-]').forEach(e=>e.style.display='none');
+  document.getElementById('t-pub').style.display='block';
+  window.scrollTo(0,0);
+  alert('Province sélectionnée: ' + p + ' - Remplis le titre et publie');
+}
+
+function del(k,i){
+  if(!confirm('Supprimer?')) return;
+  let a = get(k,[]);
+  a.splice(i,1);
+  set(k,a);
+  renderAll();
+}
+
+function delByName(nom){
+  let a = get('adhrs_membres_local',[]);
+  let idx = a.findIndex(m=>m.nom===nom);
+  if(idx>-1){
+    if(!confirm('Supprimer ' + nom + '?')) return;
+    a.splice(idx,1);
+    set('adhrs_membres_local',a);
+    renderAll();
+  }
+}
+
+function saveDesign(){
+  let o = {
+    logo: val('d_logo'),
+    titre: val('d_titre'),
+    slogan: val('d_slogan'),
+    color: val('d_color'),
+    accent: val('d_accent'),
+    bg: val('d_bg'),
+    bgImage: val('d_bgimg'),
+    banner: val('d_banner')
+  };
+  set('adhrs_apparence',o);
+  alert('Design appliqué! Va voir le site public et recharge la page.');
+}
+
+function clearDesign(){
+  if(confirm('Réinitialiser design?')){
+    localStorage.removeItem('adhrs_apparence');
+    alert('Design réinitialisé');
+  }
+}
+
+function changePass(){
+  let np = val('newPass');
+  if(np.length < 4) return alert('4 caractères min');
+  set('adhrs_admin_pass',np);
+  alert('Mot de passe changé en: ' + np);
+}
+
+function exportAll(){
+  let all = {
+    membres: get('adhrs_membres_local',[]),
+    annonces: get('adhrs_annonces_local',[]),
+    activites: get('adhrs_activites_local',[]),
+    partenaires: get('adhrs_partenaires_local',[]),
+    apparence: get('adhrs_apparence',{})
+  };
+  let blob = new Blob([JSON.stringify(all,null,2)],{type:'application/json'});
+  let url = URL.createObjectURL(blob);
+  let a = document.createElement('a');
+  a.href = url;
+  a.download = 'ADHRS-export-complet.json';
+  a.click();
 }
 </script>
 </body>
- </html>
+</html>

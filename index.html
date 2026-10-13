@@ -12,15 +12,6 @@ try{
   if(cfg.bgImage){document.documentElement.style.backgroundImage=`url(${cfg.bgImage})`;document.documentElement.style.backgroundSize='cover';document.documentElement.style.backgroundAttachment='fixed';}
 }catch(e){}
 function getLocal(k,d){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch{return d}}
-(function(){
-  let prog=getLocal('adhrs_prog',[]), now=new Date(), toPub=prog.filter(a=>new Date(a.dateProg)<=now);
-  if(toPub.length){
-    let ann=getLocal('adhrs_annonces_local',[]);
-    toPub.forEach(p=>ann.unshift({titre:p.titre,message:p.message,lieu:p.lieu,date:p.date,image:p.image,type:'annonce'}));
-    localStorage.setItem('adhrs_annonces_local',JSON.stringify(ann));
-    localStorage.setItem('adhrs_prog',JSON.stringify(prog.filter(a=>new Date(a.dateProg)>now)));
-  }
-})();
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -64,9 +55,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
 @keyframes pop{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
 .modal-header{padding:14px 16px;font-weight:800;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;background:#f8fafc}
 .modal-body{padding:14px;max-height:82vh;overflow:auto;line-height:1.6}
-/* SPLASH FLASH PHOTO 0.8s */
-#splash{position:fixed;inset:0;background:#fff;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center}
-#splash.hide{display:none !important}
+/* === CORRECTION PHOTO FLASH 0.8s GARANTI === */
+#splash{position:fixed;inset:0;background:#fff;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:hideSplash 0.4s ease 0.8s forwards}
+@keyframes hideSplash{to{opacity:0;visibility:hidden;pointer-events:none}}
 #splash img{width:145px;height:145px;border-radius:50%;object-fit:cover;border:4px solid #0a4a8a}
 </style>
 </head>
@@ -78,6 +69,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
   <div style="margin-top:8px;color:#1a2e4a;font-weight:700;font-size:14px;text-align:center">Votre voix compte.<br>Vos droits comptent.</div>
   <div style="margin-top:6px;color:#0d9a5a;font-weight:900;font-size:13px">Rejoignez-nous</div>
 </div>
+<script>/* DISPARITION FORCEE 0.8s - MEME SI ERREUR */ setTimeout(function(){var s=document.getElementById('splash');if(s){s.style.display='none'}}, 900);</script>
 
 <div id="overlay" onclick="closeAll()"></div>
 <div id="menuDrawer">
@@ -109,16 +101,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
 <div class="bottom-nav"><a class="active" href="#" onclick="openSection('sec-feed')"><span>🏠</span><span>Accueil</span></a><a href="#" onclick="openSection('sec-actions')"><span>🗓️</span><span>Activités</span></a><a href="#" onclick="openSection('contact')"><span>🎁</span><span>Dons</span></a><a href="#" onclick="openNotif()"><span>🔔</span><span>Notif</span></a></div>
 
 <script>
-// FLASH PHOTO 800ms - COMME TU VEUX
-(function(){
-  function hideSplash(){
-    let s=document.getElementById('splash');
-    if(s && !s.classList.contains('hide')) s.classList.add('hide');
-  }
-  setTimeout(hideSplash, 800);
-  window.addEventListener('load', ()=> setTimeout(hideSplash, 200));
-})();
-
 let ALL_DATA=[];
 function getLikes(){return JSON.parse(localStorage.getItem('adhrs_likes')||'{}')}
 function setLikes(o){localStorage.setItem('adhrs_likes',JSON.stringify(o))}
@@ -210,4 +192,9 @@ Promise.all([
 document.getElementById('btnRecom').onclick=()=>{
   let n=document.getElementById('nom').value, t=document.getElementById('tel').value, m=document.getElementById('msgContact').value;
   if(!n||!m) return alert('Nom et message requis');
-  let txt=encodeURIComponent(`*Recommandation ADHRS-R
+  let txt=encodeURIComponent(`*Recommandation ADHRS-RDC*%0A*Nom:* ${n}%0A*Tel:* ${t}%0A*Message:* ${m}`);
+  window.open(`https://wa.me/${CONFIG_ADHRS.whatsappNumero}?text=${txt}`,'_blank');
+};
+</script>
+</body>
+</html>

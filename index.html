@@ -23,7 +23,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
 .feed-card{background:#fff;border-radius:14px;box-shadow:0 1px 6px #0001;margin-bottom:12px;overflow:hidden;border:1px solid #f0f0f0}
 .feed-head{padding:10px 12px;font-size:12px;color:#666;display:flex;align-items:center;gap:6px}
 .feed-body{padding:0 0 8px}.feed-body h4{font-size:15px;color:#111;margin:8px 12px 4px}.feed-body p{font-size:13px;color:#333;line-height:1.4;margin:0 12px}
-.feed-body.pub-image{width:100%;height:220px;object-fit:cover;display:block;background:#eef1f5}
+
+/* === IMAGE QUI S'ADAPTE SANS COUPER - CORRIGÉ === */
+.pub-image{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+  background:#ffffff;
+  margin:0 auto;
+}
+
 .feed-actions{display:flex;gap:18px;padding:10px 12px;border-top:1px solid #f0f0f0}
 .act{border:none;background:none;font-size:13px;font-weight:700;color:#555;cursor:pointer;display:flex;align-items:center;gap:4px}
 .stats{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-around;background:#0a4a8a;color:#fff;margin:12px 15px;padding:14px;border-radius:14px;font-weight:700;font-size:11px;text-align:center}
@@ -88,10 +100,7 @@ function cardHtml(a,i,type){
   let lk=likes[id]||0, list=coms[id]||[];
   let txt=((a.titre||a.nom||'')+' '+(a.message||a.description||'')+' '+(a.lieu||'')).toLowerCase().replace(/"/g,'');
   let share=encodeURIComponent((a.titre||'')+' - '+(a.message||a.description||'').substring(0,120)+' | ADHRS-RDC');
-
-  // === CORRECTION IMAGE PARTOUT ===
-  let imageSrc = a.image || 'adhesion-2027.jpg';
-
+  let imageSrc = a.image || 'logo.jpg';
   return `<div class="feed-card" data-text="${txt}">
     <div class="feed-head"><img src="logo.jpg" style="width:26px;height:26px;border-radius:50%"> <b>ADHRS</b> • ${a.date||''} ${a.lieu||''} • ${(a.type||a.categorie||'').toUpperCase()}</div>
     <img class="pub-image" src="${imageSrc}" loading="lazy" onerror="this.src='logo.jpg'">
@@ -108,9 +117,8 @@ window.like=function(id){let l=getLikes();if(l[id+'_me']){l[id]=(l[id]||1)-1;del
 window.com=function(id){let t=prompt('Votre commentaire:');if(!t)return;let c=getComs();if(!c[id])c[id]=[];c[id].push(t);setComs(c);document.getElementById('c-'+id).innerHTML+=`<div class="comment">💬 ${t}</div>`}
 window.filtrer=function(){let q=document.getElementById('searchInput').value.toLowerCase();document.querySelectorAll('[data-text]').forEach(el=>{el.style.display=el.getAttribute('data-text').includes(q)?'block':'none'})}
 
-// Anti-cache + messages d'erreur clairs
 let bust = '?v='+Date.now();
-fetch('annonces.json'+bust).then(r=>{if(!r.ok) throw Error(); return r.json()}).then(d=>{let html='';d.slice(-5).reverse().forEach((a,i)=>html+=cardHtml(a,i,'ann'));document.getElementById('feed').innerHTML=html||'Aucune annonce pour le moment'}).catch(()=>document.getElementById('feed').innerHTML='<p style="color:#b00;font-size:12px;padding:10px">⚠️ Créez <b>annonces.json</b> à la racine. Voir modèle dans WhatsApp.</p>');
+fetch('annonces.json'+bust).then(r=>{if(!r.ok) throw Error(); return r.json()}).then(d=>{let html='';d.slice(-5).reverse().forEach((a,i)=>html+=cardHtml(a,i,'ann'));document.getElementById('feed').innerHTML=html||'Aucune annonce pour le moment'}).catch(()=>document.getElementById('feed').innerHTML='<p style="color:#b00;font-size:12px;padding:10px">⚠️ Créez <b>annonces.json</b> à la racine.</p>');
 fetch('activites.json'+bust).then(r=>r.json()).then(d=>{let html='';d.forEach((a,i)=>html+=cardHtml(a,i,'act'));document.getElementById('actions').innerHTML=html||'Aucune activité'}).catch(()=>{});
 fetch('partenariats.json'+bust).then(r=>r.json()).then(d=>{let html='';d.forEach((a,i)=>html+=cardHtml(a,i,'part'));document.getElementById('parts').innerHTML=html}).catch(()=>{});
 fetch('membres.json'+bust).then(r=>r.json()).then(d=>{document.getElementById('nb-membres').innerText=`👥 ${d.length} Adhérents`}).catch(()=>{document.getElementById('nb-membres').innerText='👥 250+ Adhérents'});
@@ -126,4 +134,4 @@ document.getElementById('btnRecom').onclick=function(){
 }
 </script>
 </body>
-</html>
+  </html>

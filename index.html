@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <script>
-  // CONFIG ADHRS - NUMÉRO CHANGEABLE
-  const CONFIG_ADHRS = {
-    whatsappNumero: "243985924965",
-    whatsappMessage: "Bonjour ADHRS-RDC, voici ma recommandation : "
-  };
-  </script>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ADHRS-RDC - Site Officiel</title>
+<script>
+// === NUMERO WHATSAPP OFFICIEL CHANGEABLE ===
+const CONFIG_ADHRS = {
+  whatsappNumero: "243985924965" // Ton 0985924965 format international - CHANGE ICI UNE SEULE FOIS
+};
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;background:#f2f4f7;color:#1a2e4a;padding-bottom:80px}
@@ -59,7 +58,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;back
 
 <div class="section" id="contact">
 <h2>📩 Contact - Déposer une Recommandation</h2>
-<p style="font-size:12px;color:#666;margin-bottom:6px">Message direct sur WhatsApp ADHRS-RDC</p>
+<p style="font-size:12px;color:#666;margin-bottom:6px">Message direct sur WhatsApp ADHRS-RDC: <b style="color:#188a3a">+243 985 924 965</b></p>
 <input id="nom" class="input" placeholder="Votre nom complet">
 <input id="tel" class="input" placeholder="Votre numéro WhatsApp">
 <textarea id="msg" class="input" rows="4" placeholder="Écrivez votre recommandation, plainte ou demande..."></textarea>
@@ -112,12 +111,18 @@ fetch('activites.json').then(r=>r.json()).then(d=>{let html='';d.forEach((a,i)=>
 fetch('partenariats.json').then(r=>r.json()).then(d=>{let html='';d.forEach((a,i)=>html+=cardHtml(a,i,'part'));document.getElementById('parts').innerHTML=html}).catch(()=>{});
 fetch('membres.json').then(r=>r.json()).then(d=>{document.getElementById('nb-membres').innerText=`👥 ${d.length} Adhérents`}).catch(()=>{document.getElementById('nb-membres').innerText='👥 250+ Adhérents'});
 
+// === FONCTION CORRIGEE AVEC NUMERO OFFICIEL ===
 document.getElementById('btnRecom').onclick=function(){
-  let nom=document.getElementById('nom').value||'Anonyme', tel=document.getElementById('tel').value||'', msg=document.getElementById('msg').value||'';
+  let nom=document.getElementById('nom').value.trim()||'Anonyme';
+  let tel=document.getElementById('tel').value.trim()||'Non fourni';
+  let msg=document.getElementById('msg').value.trim();
   if(!msg){alert('Écrivez votre recommandation SVP');return}
-  let txt=`RECOMMANDATION ADHRS-RDC%0A%0ANom: ${nom}%0ATel: ${tel}%0A%0A${msg}`;
-  window.open(`https://wa.me/?text=${txt}`,'_blank');
+  let txt=`*NOUVELLE RECOMMANDATION ADHRS-RDC*%0A%0A*Nom:* ${nom}%0A*Tel:* ${tel}%0A*Date:* ${new Date().toLocaleDateString()}%0A%0A*Message:*%0A${msg}`;
+  // ENVOI DIRECT SUR TON NUMERO OFFICIEL 243985924965
+  window.open(`https://wa.me/${CONFIG_ADHRS.whatsappNumero}?text=${txt}`,'_blank');
+  document.getElementById('msg').value='';
+  alert('Merci! Votre recommandation va être envoyée sur le WhatsApp officiel ADHRS-RDC (+243 985 924 965)');
 }
 </script>
 </body>
-</html>
+                             </html>

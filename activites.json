@@ -1,0 +1,34 @@
+[
+  {
+    "titre": "📝 Campagne d'Adhésion 2027 - Lancement",
+    "description": "Lancement officiel de la campagne de recrutement de 500 nouveaux membres. Sensibilisation porte-à-porte, distribution d'affiches, réunions communautaires. Rejoignez ADHRS-RDC pour défendre les droits humains en RDC!",
+    "categorie": "Adhésion et Recrutement",
+    "date": "30 Jan - 01 Mars 2027",
+    "lieu": "Kinshasa + 25 Provinces",
+    "image": "adhesion-2027.jpg"
+  },
+  {
+    "titre": "🎓 Formation Droits Humains à Kinshasa",
+    "description": "Formation intensive de 3 jours sur la surveillance des droits humains, rédaction de rapports, et plaidoyer. 50 places disponibles. Certificat à la fin.",
+    "categorie": "Formation",
+    "date": "20-22 Fév 2027",
+    "lieu": "Kinshasa / Limete",
+    "image": "formation.jpg"
+  },
+  {
+    "titre": "🏘️ Sensibilisation Communautaire - Masina",
+    "description": "Activité terrain à Masina et N'djili. Équipe ADHRS va sensibiliser les jeunes sur leurs droits et devoirs. Théâtre, débats, distribution de dépliants.",
+    "categorie": "Sensibilisation",
+    "date": "05 Mars 2027",
+    "lieu": "Masina, Kinshasa",
+    "image": "sensibilisation-masina.jpg"
+  },
+  {
+    "titre": "🤝 Remise des Cartes Membres 2026",
+    "description": "Cérémonie officielle de remise des cartes aux nouveaux adhérents de 2026. Présence des autorités locales et partenaires.",
+    "categorie": "Cérémonie",
+    "date": "15 Dec 2026",
+    "lieu": "Kinshasa",
+    "image": "remise-cartes.jpg"
+  }
+]
